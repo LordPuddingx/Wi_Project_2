@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fahrtenbuchung</title>
+    <link rel="stylesheet" href="/static/fahrtenbuchung.css">
+</head>
+
+<body>
+    <form method="POST" action="/book">
+        <label for="start">Termin:</label>
+        <input type="date" id="date" name="date" value="<?php echo $today; ?>" class="form-control" max="2050-12-31"
+            min="2023-01-01">
+        <button>GoGo PowerRangers</button>
+    </form>
+</body>
+
+</html>
