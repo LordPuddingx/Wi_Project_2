@@ -54,7 +54,7 @@ def registration():
     if e_mail_not_exists and pw_matching == None:
         con.new_profil(e_mail, pw, last_name, first_name, street, postal_code, city, region)
         mail.write_mail(e_mail)
-        return render_template("profile.html")
+        return redirect("/")
     
     return render_template(r"registration.html", e_mail_exists= None if e_mail_not_exists else "Invalid", pw_matching = pw_matching,
                             e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
@@ -66,10 +66,17 @@ def booking():
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
-    user_inputs = request.form.to_dict()
-    date = user_inputs["date"]
-    print(date)
+    #print(request.form.to_dict())
+    print(request.json())
+    # user_inputs = request.form["asdf"]
+    # print("ASDF:", user_inputs)
+    # date = user_inputs["datetime"]
+    # bef = user_inputs["bef"]
+    # print(bef)
+    # print(date)
+
     return render_template(r"profile.html")
+
 
 if __name__ == "__main__":
     global con

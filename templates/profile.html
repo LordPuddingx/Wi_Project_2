@@ -7,12 +7,39 @@
 </head>
 
 <body>
-    <form method="POST" action="/book">
-        <label for="start">Termin:</label>
-        <input type="date" id="date" name="date" value="<?php echo $today; ?>" class="form-control" max="2050-12-31"
-            min="2023-01-01">
-        <button>GoGo PowerRangers</button>
-    </form>
+
+    <h1>Fahrtenbuchung</h1>
+    <div class="tabs" methods="POST">
+
+        <input type="radio" id="tab1" name="tab-control" checked>
+        <input type="radio" id="tab2" name="tab-control">
+        <ul>
+            <li title="Features"><label for="tab1" role="button"><br><span>Mit Transportschein</span></label></li>
+            <li title="Delivery Contents"><label for="tab2" role="button"><br><span>Auf Rechnung</span></label></li>
+
+        </ul>
+
+        <div class="slider">
+            <div class="indicator"></div>
+        </div>
+        <div class="content" methods="POST">
+            <section methods="POST">
+                <form action="/book" methods="POST">
+                    <input type="text" name="asdf">
+                    <input type="submit">
+                </form>
+            </section>
+            <section>
+                <h2>Delivery Contents</h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas adipisci a accusantium eius ut
+                voluptatibus ad impedit nulla, ipsa qui. Quasi temporibus eos commodi aliquid impedit amet, similique
+                nulla.
+            </section>
+
+        </div>
+    </div>
+
+
 </body>
 
 </html>

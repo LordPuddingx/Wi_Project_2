@@ -8,67 +8,73 @@
     <link rel="stylesheet" href="/static/registration.css">
 </head>
 
+
 <body>
     <form method="POST" action="/registration">
         <h3>Registrierung</h3>
 
         <div style="float:left">
-            <label>E-Mail</label>
-            <input type="text" placeholder="Email" name="e_mail" id="e_mail" value="{% if e_mail != None %}{{ e_mail }}{% endif%}">
+            <br\>
+                <label>Nachname</label>
+                <input type="text" placeholder="Nachname" name="last_name" id="last_name"
+                    value="{% if last_name != None %}{{ last_name }}{% endif%}">
 
-            {% if e_mail_exists == "Invalid" %}
+                <label>Bundesland</label>
+                <input type="text" placeholder="Bundesland" name="region" id="region"
+                    value="{% if region != None %}{{ region }}{% endif%}">
 
-            <h4 class="invalid" style="color: red;">E-Mail existiert bereits!</h4>
-            
-            {% endif %}
 
-            <label>Passwort</label>
-            <input type="password" placeholder="Passwort" name="pw" id="pw">
+                <label>Stadt</label>
+                <input type="text" placeholder="Stadt" name="city" id="city"
+                    value="{% if city != None %}{{ city }}{% endif%}">
 
-            {% if pw_matching == "Invalid" %}
-        
-            <h4 class="invalid" style="color: red;">Passwörter stimmen nicht überein!</h4>
+                <label>Passwort</label>
+                <input type="password" placeholder="Passwort" name="pw" id="pw">
 
-            {% endif %}
-    
-            <label>Nachname</label>
-            <input type="text" placeholder="Nachname" name="last_name" id="last_name" value="{% if last_name != None %}{{ last_name }}{% endif%}">
+                {% if pw_matching == "Invalid" %}
+                <h4 class="invalid" style="color: red;">Passwörter stimmen nicht überein!</h4>
+                {% endif %}
 
-            <label>Straße</label>
-            <input type="text" placeholder="Straße" name="street" id="street" value="{% if street != None %}{{ street }}{% endif%}">
+                <label>E-Mail</label>
+                <input type="text" placeholder="Email" name="e_mail" id="e_mail"
+                    value="{% if e_mail != None %}{{ e_mail }}{% endif%}">
 
-            <label>Stadt</label>
-            <input type="text" placeholder="Stadt" name="city" id="city" value="{% if city != None %}{{ city }}{% endif%}">
+                {% if e_mail_exists == "Invalid" %}
+                <h4 class="invalid" style="color: red;">E-Mail existiert bereits!</h4>
+                {% endif %}
+
         </div>
 
         <div style="float:right">
-            <br>          
+            <label>Vorname</label>
+            <input type="text" placeholder="Vorname" name="first_name" id="first_name"
+                value="{% if first_name != None %}{{ first_name }}{% endif%}">
+
+
+            <label>Postleitzahl</label>
+            <input type="text" placeholder="Postleitzahl" name="postal_code" id="postal_code"
+                value="{% if postal_code != None %}{{ postal_code }}{% endif%}">
+
+            <label>Straße</label>
+            <input type="text" placeholder="Straße" name="street" id="street"
+                value="{% if street != None %}{{ street }}{% endif%}">
+
             <label>Passwort wiederholen</label>
             <input type="password" placeholder="Passwort wiederholen" name="pw_w" id="pw_w">
 
-            <label>Vorname</label>
-            <input type="text" placeholder="Vorname" name="first_name" id="first_name" value="{% if first_name != None %}{{ first_name }}{% endif%}">
 
-            <label>Postleitzahl</label>
-            <input type="text" placeholder="Postleitzahl" name="postal_code" id="postal_code" value="{% if postal_code != None %}{{ postal_code }}{% endif%}">
 
-            <label>Bundesland</label>
-            <input type="text" placeholder="Bundesland" name="region" id="region" value="{% if region != None %}{{ region }}{% endif%}">
+            <button>Registrieren</button>
+
+            <ul class="navigation">
+                <li class="navigation-item">
+                    <a href="/">Login</a>
+                </li>
+                <li class="navigation-item">
+                    <a href="/booking">Passwort vergessen</a>
+                </li>
+            </ul>
         </div>
-
-
-        <button>Registrieren</button>
-
-        
-        <ul class="navigation">
-            <li class="navigation-item">
-                <a href="/">Login</a>
-            </li>
-            <li class="navigation-item">
-                <a href="/booking">Passwort vergessen</a>
-            </li>
-        </ul>
-        
 
     </form>
 </body>
