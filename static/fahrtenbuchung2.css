@@ -1,0 +1,234 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+body {
+    background: #dedcf0;
+    color: #000000;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    line-height: 1.6em;
+    margin: 0;
+    padding: 100px;
+}
+
+h1 {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+}
+
+h4 {
+    white-space: nowrap;
+}
+
+
+input {
+    font-size: 24px;
+}
+
+.made-with {
+    background: #fd264f;
+    color: #000000;
+    display: block;
+    font-size: 12px;
+    line-height: 1em;
+    margin: 0;
+    padding: 5px 110px;
+    position: fixed;
+    top: 20px;
+    right: -100px;
+    text-align: center;
+    text-decoration: none;
+    transform: rotate(45deg);
+}
+
+
+.tabs {
+    display: block;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0;
+    overflow: hidden;
+}
+
+.tabs [class^="tab"] label,
+.tabs [class*=" tab"] label {
+    color: #ff0000;
+    cursor: pointer;
+    display: block;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1em;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.tabs [class^="tab"] [type="radio"],
+.tabs [class*=" tab"] [type="radio"] {
+    border-bottom: 1px solid rgba(239, 237, 239, 0.5);
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: block;
+    width: 100%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.tabs [class^="tab"] [type="radio"]:hover,
+.tabs [class^="tab"] [type="radio"]:focus,
+.tabs [class*=" tab"] [type="radio"]:hover,
+.tabs [class*=" tab"] [type="radio"]:focus {
+    border-bottom: 1px solid #fd264f;
+}
+
+.tabs [class^="tab"] [type="radio"]:checked,
+.tabs [class*=" tab"] [type="radio"]:checked {
+    border-bottom: 2px solid #fd264f;
+}
+
+.tabs [class^="tab"] [type="radio"]:checked+div,
+.tabs [class*=" tab"] [type="radio"]:checked+div {
+    opacity: 1;
+}
+
+.tabs [class^="tab"] [type="radio"]+div,
+.tabs [class*=" tab"] [type="radio"]+div {
+    display: block;
+    opacity: 0;
+    padding: 2rem 0;
+    width: 90%;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.tabs .tab-2 {
+    width: 50%;
+}
+
+.tabs .tab-2 [type="radio"]+div {
+    width: 50%;
+    margin-left: 100%;
+}
+
+.tabs .tab-2 [type="radio"]:checked+div {
+    margin-left: 0;
+}
+
+.tabs .tab-2:last-child [type="radio"]+div {
+    margin-left: 100%;
+}
+
+.tabs .tab-2:last-child [type="radio"]:checked+div {
+    margin-left: -100%;
+}
+
+
+
+
+
+div.tschein {
+    background-image: url("/static/images/Tschein1.jpg");
+    left: 50%;
+    width: 586px;
+    height: 282px;
+    position: absolute;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%);
+    background-size: 100%;
+    margin-top: 200px;
+    padding: 0px 0px;
+}
+
+div.selection>label>input {
+    visibility: hidden;
+}
+
+div.selection>label {
+    display: block;
+    margin: 0 0 0 0px;
+    padding: 0 0 0px 0px;
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+div.selection>label>img {
+    display: inline-block;
+    padding: 0px 0px;
+    height: 22px;
+    width: 22px;
+    background: none;
+    border-color: red;
+    position: absolute;
+    transform: translate(-50%, -50%);
+
+}
+
+div.selection>label>input:checked+img {
+    background: url("/static/images/X.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 22px 22px;
+}
+
+div.selection>label.einsaeins {
+    left: 39px;
+    top: 48px;
+}
+
+div.selection>label.einsazwei {
+    right: 182px;
+    top: 48px;
+}
+
+div.selection>label.einsb {
+    left: 39px;
+    top: 86px;
+}
+
+div.selection>label.einsc {
+    left: 39px;
+    top: 123px;
+}
+
+div.selection>input.einsczwei {
+    margin-left: 177px;
+    margin-top: 115px;
+    font-size: 14px;
+    width: 405px;
+}
+
+div.selection>label.einsd {
+    left: 39px;
+    top: 177px;
+}
+
+div.selection>label.einsdzwei {
+    right: 182px;
+    top: 177px;
+}
+
+div.selection>label.einse {
+    left: 39px;
+    top: 215px;
+}
+
+div.selection>label.einsf {
+    left: 39px;
+    top: 252px;
+}

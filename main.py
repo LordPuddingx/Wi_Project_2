@@ -8,12 +8,16 @@ run = Flask(__name__)
 #             static_folder=r"D:\PythonProjects\Wi_Projekt_2\Bilder", 
 #             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
 
+current_profile = None
+
 @run.route("/")
 def load():
     return render_template("login.html")
 
 @run.route("/login", methods=["GET", "POST"])
 def login():
+    global current_profile
+    
     user_inputs = request.form.to_dict()
     e_mail = user_inputs["e_mail"]
     pw = user_inputs["pw"]
@@ -21,6 +25,7 @@ def login():
     matching = con.login(e_mail, pw)
    
     if matching:
+        current_profile = e_mail
         return redirect("/booking")
     else:
         return render_template(r"login.html", matching = "Invalid", e_mail = e_mail)
@@ -62,12 +67,13 @@ def registration():
 
 @run.route("/booking")
 def booking():
-    return render_template(r"profile.html")
+    print(current_profile)
+    return render_template(r"profile2.html")
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
-    #print(request.form.to_dict())
-    print(request.json())
+    print(request.form.to_dict())
+   # print(request.get_json())
     # user_inputs = request.form["asdf"]
     # print("ASDF:", user_inputs)
     # date = user_inputs["datetime"]
@@ -75,7 +81,7 @@ def book():
     # print(bef)
     # print(date)
 
-    return render_template(r"profile.html")
+    return render_template(r"profile2.html")
 
 
 if __name__ == "__main__":
