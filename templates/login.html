@@ -35,10 +35,31 @@
         {% endif %}
 
         <br />
-        <div class="popup" onclick="myFunction()"> Click me!
-            <span class="popuptext" id="myPopup">Popup text...</span>
-        </div>
+        
+        
+        
     </form>
+    
+    <button class="button" onclick="openPopup()">Test</button>
+    <div class="popup" id="popup">
+        <img src="/static/images/tick.jpg">
+        <h2>Success!</h2>
+        <p>Regstrierung erfolgreich abgeschlossen!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        let popup = document.getElementById("popup");
+    
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+    
+        function closePopup() {
+            popup.classList.remove("open-popup");
+        }
+    </script>
+
 </body>
 
 </html>

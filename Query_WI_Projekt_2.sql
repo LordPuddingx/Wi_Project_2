@@ -17,3 +17,5 @@ Create table tblProfil (
 	PRIMARY KEY (E_Mail)	
 )
 
+Delete from tblLogin where E_Mail like '%%'
+Delete from tblProfil where E_Mail like '%%'
