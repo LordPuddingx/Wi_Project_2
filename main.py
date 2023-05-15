@@ -51,7 +51,7 @@ def registration():
 
     e_mail_not_exists = con.existing_email(e_mail)
 
-    if e_mail_not_exists and pw_matching == None:
+    if e_mail_not_exists and pw_matching == None and mail.check_mail(e_mail):
         con.new_profil(e_mail, pw, last_name, first_name, street, postal_code, city, region)
         mail.write_mail(e_mail)
         return redirect("/")

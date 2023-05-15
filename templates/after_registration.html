@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+
+<body>
+    <form method="POST" action="/login">
+        <h3>Anmeldung</h3>
+
+        <label for="e_mail">E-Mail</label>
+        <input type="text" placeholder="Email" name="e_mail" id="e_mail"
+            value="{% if e_mail != None %}{{ e_mail }}{% endif%}">
+
+        <label for="pw">Passwort</label>
+        <input type="password" placeholder="Passwort" name="pw" id="pw">
+
+        <button>Anmelden</button>
+
+        <ul class="navigation">
+            <li class="navigation-item">
+                <a href="/reg">Registrieren</a>
+            </li>
+            <li class="navigation-item">
+                <a href="/booking">Passwort vergessen</a>
+            </li>
+        </ul>
+
+        <br />
+        {% if matching %}
+
+        <h4 style="color: red;">Das angegebenen Passwort oder der Benutzername sind leider nicht korrekt!</h4>
+
+        {% endif %}
+
+        <br />
+
+
+
+    </form>
+
+    <button class="button" onclick="openPopup()">Test</button>
+    <div class="popup" id="popup">
+        <img src="/static/images/tick.jpg">
+        <h2>Success!</h2>
+        <p>Regstrierung erfolgreich abgeschlossen!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        let popup = document.getElementById("popup");
+
+        function openPopup() {
+            popup.classList.add("open-popup");
+        }
+
+        function closePopup() {
+            popup.classList.remove("open-popup");
+        }
+    </script>
+
+</body>
+
+</html>
