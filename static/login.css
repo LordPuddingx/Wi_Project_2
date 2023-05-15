@@ -117,7 +117,7 @@ button {
 }
 
 .popup *{
-    font-family: sans-serif;
+    font-family:arial;
     color: #000000;
     letter-spacing: 0.5px;
     outline: none;
