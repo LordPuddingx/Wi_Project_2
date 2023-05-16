@@ -59,11 +59,15 @@ def registration():
     if e_mail_not_exists and pw_matching == None:
         con.new_profil(e_mail, pw, last_name, first_name, street, postal_code, city, region)
         mail.write_mail(e_mail)
-        return redirect("/")
+        return redirect("/reg_log")
     
     return render_template(r"registration.html", e_mail_exists= None if e_mail_not_exists else "Invalid", pw_matching = pw_matching,
                             e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region)
+
+@run.route("/reg_log")
+def reg_log():
+    return render_template(r"after_registration.html")
 
 @run.route("/booking")
 def booking():

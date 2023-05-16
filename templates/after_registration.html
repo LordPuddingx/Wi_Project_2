@@ -3,7 +3,7 @@
 
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/after_registration.css">
 </head>
 
 <body>
@@ -41,9 +41,8 @@
 
     </form>
 
-    <button class="button" onclick="openPopup()">Test</button>
     <div class="popup" id="popup">
-        <img src="/static/images/tick.jpg">
+        <img src="/static/images/check.jpg">
         <h2>Success!</h2>
         <p>Regstrierung erfolgreich abgeschlossen!</p>
         <button onclick="closePopup()">OK</button>
@@ -52,12 +51,11 @@
     <script>
         let popup = document.getElementById("popup");
 
-        function openPopup() {
-            popup.classList.add("open-popup");
-        }
-
         function closePopup() {
-            popup.classList.remove("open-popup");
+            // popup.classList.remove("popup"); 
+            var elem = document.getElementById("popup");
+            elem.parentNode.removeChild(elem);
+            return false;  
         }
     </script>
 
