@@ -8,15 +8,15 @@
 
 <body>
     <h1> Fahrtenbuchung </h1>
-    <form method="POST" action="/book">
+    <form method="GET" action="/booking">
         <div align="center" method="POST">
             <br>
             <br>
             <h2 for="start">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
             <input type="datetime-local" id="datetime" name="datetime" value="<?php echo $today; ?>" max="2050-12-31"
                 min="2023-01-01">
-            <input type="submit">
-
+            <h2 for="start">Behandlungsstätte</h2>
+            <input type="text">
             <br>
             <br>
         </div>
@@ -69,6 +69,9 @@
                                 <input type="radio" name="genehmingungspflicht" id="einsf" value="4">
                                 <img />
                             </label>
+                            <button onclick="checkRadio()">Check Radio</button>
+                            
+                            <script src="/static/script.js"></script>
                         </div>
                     </div>
 
@@ -82,17 +85,20 @@
                 <label for="tab2-2">Auf Rechnung</label>
                 <input id="tab2-2" name="tabs-two" type="radio">
                 <div>
-                    <h4>Tab Two</h4>
-                    <p>Quisque sit amet turpis leo. Maecenas sed dolor mi. Pellentesque varius elit in neque ornare
-                        commodo
-                        ac non tellus. Mauris id iaculis quam. Donec eu felis quam. Morbi tristique lorem eget iaculis
-                        consectetur. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                        himenaeos. Aenean at tellus eget risus tempus ultrices. Nam condimentum nisi enim, scelerisque
-                        faucibus lectus sodales at.</p>
+                    <h4>Barrierefreiheitsoption für die Fahrt</h4>
+                    <input type="checkbox" name="check" id="barrierefrei" value="barrierefrei" onclick="onlyOne(this)"> barrierefrei
+                    <br>
+                    <input type="checkbox" name="check" id="nicht barrierefrei" value="barrierefrei" onclick="onlyOne(this)"> nicht barrierefrei
+                    <br>
+                    <h4>Sonstige Angaben</h4>
+                    <textarea rows="10" cols="80" name="comment" id="kommentarfeld" form="usrform" placeholder="Sonstige Angaben"></textarea>
                 </div>
+                <script src="/static/script.js"></script>
             </div>
         </div>
     </form>
 </body>
+
+
 
 </html>

@@ -46,5 +46,13 @@ class Connection():
         res = pd.read_sql(sql, self.engine)
         return True if res["result"][0] == 0 else False
 
-    
-
+    def tschein_test(self, voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar):
+        voll_teilstationaere_Behandlung = voll_teilstationaere_Behandlung
+        vor_nachstationaere_Behandlung = vor_nachstationaere_Behandlung
+        ambulante_Behandlung = ambulante_Behandlung
+        anderer_Grund = anderer_Grund
+        anderer_Grund_Kommentar = anderer_Grund_Kommentar
+        sqlTest = text(f"INSERT INTO tblTest SELECT '{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}'")
+        # sqlTest = text(f"INSERT INTO tblTest (voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar) VALUES ('{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}')")
+        self.engine.execute(sqlTest)
+        self.engine.commit()

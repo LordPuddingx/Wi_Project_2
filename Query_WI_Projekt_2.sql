@@ -17,5 +17,17 @@ Create table tblProfil (
 	PRIMARY KEY (E_Mail)	
 )
 
+
+Create table tblTest (
+	voll_teilstationaere_Behandlung Nvarchar(10) NOT NULL,
+	vor_nachstationaere_BehandlungPw Nvarchar(10) NOT NULL,
+	ambulante_Behandlung Nvarchar(10) NOT NULL,
+	anderer_Grund Nvarchar(10) NOT NULL,
+	anderer_Grund_Kommentar Nvarchar(50)
+)
+
+Drop table tblTest
+
 Delete from tblLogin where E_Mail like '%%'
 Delete from tblProfil where E_Mail like '%%'
+Delete from tblTest where voll_teilstationaere_Behandlung like '%%'

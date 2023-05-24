@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+import json
 
 import connection, mail
 
@@ -76,17 +77,23 @@ def booking():
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
-    print(request.form.to_dict())
-   # print(request.get_json())
+    body = request.get_data()
+    json_data = request.get_json()
+    voll_teilstationaere_Behandlung = str(json_data['voll_teilstationaere_Behandlung'])
+    vor_nachstationaere_Behandlung = str(json_data['vor_nachstationaere_Behandlung'])
+    ambulante_Behandlung = str(json_data['ambulante_Behandlung'])
+    anderer_Grund = str(json_data['anderer_Grund'])
+    anderer_Grund_Kommentar = str(json_data['anderer_Grund_Kommentar'])
+    con.tschein_test(voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung,
+                     ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar)
+    #print(request.get_json())
     # user_inputs = request.form["asdf"]
     # print("ASDF:", user_inputs)
     # date = user_inputs["datetime"]
     # bef = user_inputs["bef"]
     # print(bef)
     # print(date)
-
     return render_template(r"profile2.html")
-
 
 if __name__ == "__main__":
     global con
