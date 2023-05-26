@@ -235,18 +235,18 @@ div.selection>label.einsf {
 
 div.tschein_2 {
     background-image: url("/static/images/Tschein2.jpg");
-    left: 10%;
+    margin-top: 550px;
+    left: 50%;
     width: 586px;
-    height: 282px;
+    height: 382px;
     position: absolute;
     background-repeat: no-repeat;
     transform: translate(-50%, -50%);
     background-size: 100%;
-    margin-top: 200px;
     padding: 0px 0px;
 }
 
 textarea{
-    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     border: 1px solid black;
 }

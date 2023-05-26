@@ -1,0 +1,18 @@
+.header{
+    margin-top: 80px;
+    padding: 0rem 0rem;
+    text-align: center;
+    font-size: 30px;
+}
+
+.navigation {
+    list-style-type: none;
+}
+
+.navigation-item {
+    float: right;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+

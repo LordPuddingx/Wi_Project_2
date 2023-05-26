@@ -95,6 +95,10 @@ def book():
     # print(date)
     return render_template(r"profile2.html")
 
+@run.route("/main", methods=["GET", "POST"])
+def main():
+    return render_template(r"mainpage.html")
+
 if __name__ == "__main__":
     global con
     con = connection.Connection()
