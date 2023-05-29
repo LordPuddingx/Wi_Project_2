@@ -13,10 +13,10 @@
             <br>
             <br>
             <h2 for="start">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
-            <input type="datetime-local" id="datetime" name="zeitpunkt" value="<?php echo $today; ?>" max="2050-12-31"
+            <input type="datetime-local" id="zeitpunkt" name="datetime" value="<?php echo $today; ?>" max="2050-12-31"
                 min="2023-01-01">
             <h2 for="start">Behandlungsstätte</h2>
-            <input type="text" name="ort">
+            <input type="text" name="staette" id="zeitpunkt">
             <br>
             <br>
         </div>
@@ -117,9 +117,9 @@
                         </div>
                     </div>
 
-                    <script src="/static/script.js"></script>
 
                 </div>
+                <script src="/static/script.js"></script>
             </div>
             <div class="tab-2">
                 <label for="tab2-2">Auf Rechnung</label>
@@ -136,14 +136,10 @@
                     <textarea rows="10" cols="80" name="comment" id="kommentarfeld" form="usrform"
                         placeholder="Sonstige Angaben"></textarea>
                 </div>
-                <script src="/static/script.js"></script>
             </div>
-            <script src="/static/script.js"></script>
         </div>
 
     </form>
 </body>
-
-
 
 </html>

@@ -9,7 +9,7 @@ run = Flask(__name__)
 #             static_folder=r"D:\PythonProjects\Wi_Projekt_2\Bilder", 
 #             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
 
-current_profile = None
+current_profile = "02isdo1bwi@hft-stuttgart.de"
 
 @run.route("/")
 def load():
@@ -77,23 +77,35 @@ def booking():
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
-    body = request.get_data()
-    json_data = request.get_json()
+    #body = request.get_data()
+    body = json.loads(request.data)
     print(body)
-    voll_teilstationaere_Behandlung = str(json_data['voll_teilstationaere_Behandlung'])
-    vor_nachstationaere_Behandlung = str(json_data['vor_nachstationaere_Behandlung'])
-    ambulante_Behandlung = str(json_data['ambulante_Behandlung'])
-    anderer_Grund = str(json_data['anderer_Grund'])
-    anderer_Grund_Kommentar = str(json_data['anderer_Grund_Kommentar'])
-    con.tschein_test(voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung,
-                     ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar)
-    #print(request.get_json())
-    # user_inputs = request.form["asdf"]
-    # print("ASDF:", user_inputs)
-    # date = user_inputs["datetime"]
-    # bef = user_inputs["bef"]
-    # print(bef)
-    # print(date)
+    
+    con.fahrtenbuchung(
+        email=current_profile, 
+        datum = "2023-05-05",
+        ort = "Stuggi",
+        voll_teilstationaere_Behandlung = body.get("voll_teilstationaere_Behandlung"),
+        vor_nachstationaere_Behandlung = body.get("vor_nachstationaere_Behandlung"),
+        ambulante_Behandlung = body.get("ambulante_Behandlung"), 
+        anderer_Grund = body.get("anderer_Grund"), 
+        anderer_Grund_Kommentar = body.get("anderer_Grund_Kommentar"), 
+        hochfrequente_Behandlung = body.get("hochfrequente_Behandlung"), 
+        vergleichbarer_Ausnahmefall = body.get("vergleichbarer_Ausnahmefall"), 
+        dauerhafte_Mobilitätsbeeinträchtigung = body.get("dauerhafte_Mobilitaetsbeeintraechtigung"), 
+        anderer_Grund_für_Fahrt = body.get("anderer_Grund_KTW"), 
+        Taxi = body.get("taxi"), 
+        KTW = body.get("KTW"), 
+        KTW_Begründung = body.get("KTW_Begruendung"), 
+        RTW = body.get("RTW"), 
+        NAW = body.get("NAW"), 
+        andere = body.get("andere"), 
+        andere_Begründung = body.get("andere_Begruendung"), 
+        Rollstuhl = body.get("rollstuhl"), 
+        Tragestuhl = body.get("tragestuhl"), 
+        liegend = body.get("liegend"),
+    )
+    # return redirect to main page
     return render_template(r"profile2.html")
 
 @run.route("/main", methods=["GET", "POST"])

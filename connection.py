@@ -46,14 +46,37 @@ class Connection():
         res = pd.read_sql(sql, self.engine)
         return True if res["result"][0] == 0 else False
 
-    def tschein_test(self, voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar):
-        voll_teilstationaere_Behandlung = voll_teilstationaere_Behandlung
-        vor_nachstationaere_Behandlung = vor_nachstationaere_Behandlung
-        ambulante_Behandlung = ambulante_Behandlung
-        anderer_Grund = anderer_Grund
-        anderer_Grund_Kommentar = anderer_Grund_Kommentar
-        sqlTest = text(f"INSERT INTO tblTest SELECT '{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}'")
+    def fahrtenbuchung(self, email, datum, ort, voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar, hochfrequente_Behandlung, vergleichbarer_Ausnahmefall, dauerhafte_Mobilitätsbeeinträchtigung, anderer_Grund_für_Fahrt, Taxi, KTW, KTW_Begründung, RTW, NAW, andere, andere_Begründung, Rollstuhl, Tragestuhl, liegend):
+ 
+        #sqlTest = text(f"INSERT INTO tblTest SELECT '{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}'")
         # sqlTest = text(f"INSERT INTO tblTest (voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar) VALUES ('{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}')")
-        self.engine.execute(sqlTest)
+        sql = text(
+            """INSERT INTO [tblFahrtenbuchung]
+           ([email]
+           ,[datum]
+           ,[Behandlungsstätte]
+           ,[voll_teilstationaere_Behandlung]
+           ,[vor_nachstationaere_BehandlungPw]
+           ,[ambulante_Behandlung]
+           ,[anderer_Grund]
+           ,[anderer_Grund_Kommentar]
+           ,[hochfrequente_Behandlung]
+           ,[vergleichbarer_Ausnahmefall]
+           ,[dauerhafte_Mobilitätsbeeinträchtigung]
+           ,[anderer_Grund_für_Fahrt]
+           ,[Taxi]
+           ,[KTW]
+           ,[KTW_Begründung]
+           ,[RTW]
+           ,[NAW]
+           ,[andere]
+           ,[andere_Begründung]
+           ,[Rollstuhl]
+           ,[Tragestuhl]
+           ,[liegend])
+            VALUES ("""
+            + f"'{email}', '{datum}', '{ort}','{1 if voll_teilstationaere_Behandlung else 0}','{1 if vor_nachstationaere_Behandlung else 0}','{1 if ambulante_Behandlung else 0}','{1 if anderer_Grund else 0}','{anderer_Grund_Kommentar}','{1 if hochfrequente_Behandlung else 0}','{1 if vergleichbarer_Ausnahmefall else 0}','{1 if dauerhafte_Mobilitätsbeeinträchtigung else 0}','{1 if anderer_Grund_für_Fahrt else 0}','{1 if Taxi else 0}','{1 if KTW else 0}','{KTW_Begründung}','{1 if RTW else 0}','{1 if NAW else 0}','{1 if andere else 0}','{andere_Begründung}','{1 if Rollstuhl else 0}','{1 if Tragestuhl else 0}','{1 if liegend else 0}');"
+        )
+        self.engine.execute(sql)
         self.engine.commit()
 

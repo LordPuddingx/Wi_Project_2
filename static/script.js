@@ -31,8 +31,8 @@ function checkRadio() {
         andere_Begruendung: document.getElementById("zweieinsd").value,
         Begruendung_vier: document.getElementById("zweivier").value,
 
-        date: document.getElementById("zeitpunkt").value,
-        behandlungsort: document.getElementById("ort").value,
+        // date: document.getElementById("zeitpunkt").value,
+        // behandlungsort: document.getElementById("ort").value,
     };
     var xhr = new XMLHttpRequest();
     var url = "http://127.0.0.1:5000/book";
