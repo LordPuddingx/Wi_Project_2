@@ -79,6 +79,7 @@ def booking():
 def book():
     body = request.get_data()
     json_data = request.get_json()
+    print(body)
     voll_teilstationaere_Behandlung = str(json_data['voll_teilstationaere_Behandlung'])
     vor_nachstationaere_Behandlung = str(json_data['vor_nachstationaere_Behandlung'])
     ambulante_Behandlung = str(json_data['ambulante_Behandlung'])

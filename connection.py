@@ -56,3 +56,4 @@ class Connection():
         # sqlTest = text(f"INSERT INTO tblTest (voll_teilstationaere_Behandlung, vor_nachstationaere_Behandlung, vor_nachstationaere_Behandlung, ambulante_Behandlung, anderer_Grund, anderer_Grund_Kommentar) VALUES ('{voll_teilstationaere_Behandlung}', '{vor_nachstationaere_Behandlung}', '{ambulante_Behandlung}', '{anderer_Grund}', '{anderer_Grund_Kommentar}')")
         self.engine.execute(sqlTest)
         self.engine.commit()
+

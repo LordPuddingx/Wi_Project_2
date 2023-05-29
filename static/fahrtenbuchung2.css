@@ -246,7 +246,69 @@ div.tschein_2 {
     padding: 0px 0px;
 }
 
-textarea{
+textarea {
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     border: 1px solid black;
+}
+
+div.selection>label.zweieinsa {
+    left: 19px;
+    top: 35px;
+}
+
+div.selection>label.zweieinsb {
+    left: 19px;
+    top: 67px;
+}
+
+div.selection>textarea.zweieinsc {
+    margin-left: 8px;
+    margin-top: 93px;
+    font-size: 14px;
+    width: 260px;
+    height: 45px;
+}
+
+div.selection>label.zweieinsd {
+    left: 19px;
+    top: 155px;
+}
+
+div.selection>label.zweieinse {
+    left: 85px;
+    top: 155px;
+}
+
+div.selection>label.zweieinsf {
+    left: 150px;
+    top: 155px;
+}
+
+div.selection>input.zweieinsg {
+    margin-right: 225px;
+    margin-top: 2px;
+    font-size: 14px;
+    width: 150px;
+}
+
+div.selection>input.zweivier {
+    margin-left: 7px;
+    margin-top: 52px;
+    font-size: 14px;
+    width: 360px;
+}
+
+div.selection>label.zweizweia {
+    right: 275px;
+    top: 35px;
+}
+
+div.selection>label.zweizweib {
+    right: 275px;
+    top: 68px;
+}
+
+div.selection>label.zweizweic {
+    right: 275px;
+    top: 101px;
 }

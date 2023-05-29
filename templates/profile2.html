@@ -13,10 +13,10 @@
             <br>
             <br>
             <h2 for="start">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
-            <input type="datetime-local" id="datetime" name="datetime" value="<?php echo $today; ?>" max="2050-12-31"
+            <input type="datetime-local" id="datetime" name="zeitpunkt" value="<?php echo $today; ?>" max="2050-12-31"
                 min="2023-01-01">
             <h2 for="start">Behandlungsstätte</h2>
-            <input type="text">
+            <input type="text" name="ort">
             <br>
             <br>
         </div>
@@ -70,15 +70,54 @@
                                 <img />
                             </label>
                             <button onclick="checkRadio()">Check Radio</button>
-                            
-                            <script src="/static/script.js"></script>
+
+
                         </div>
                     </div>
                     <div class="tschein_2">
+                        <div class="selection">
+                            <label class="zweieinsa" style="float:left">
+                                <input type="radio" name="art" id="arta" value="1">
+                                <img />
+                            </label>
+                            <label class="zweieinsb" style="float:left">
+                                <input type="radio" name="art" id="artb" value="2">
+                                <img />
+                            </label>
+                            <textarea cols="100" rows="2" class="zweieinsc" name="zweieinsc" id="zweieinsc"
+                                style="resize: none"></textarea>
+                            <label class="zweieinsd" style="float:left">
+                                <input type="radio" name="art" id="artd" value="3">
+                                <img />
+                            </label>
+                            <label class="zweieinse" style="float:left">
+                                <input type="radio" name="art" id="arte" value="4">
+                                <img />
+                            </label>
+                            <label class="zweieinsf" style="float:left">
+                                <input type="radio" name="art" id="artf" value="5">
+                                <img />
+                            </label>
+                            <input class="zweieinsg" type="text" name="zweieinsd" id="zweieinsd" style="float:right">
+                            <input class="zweivier" type="text" name="zweivier" id="zweivier" style="float:left">
 
+                            <label class="zweizweia" style="float:right">
+                                <input type="radio" name="ausstatt" id="ausstatta" value="1">
+                                <img />
+                            </label>
+                            <label class=" zweizweib" style="float:right">
+                                <input type="radio" name="ausstatt" id="ausstattb" value="2">
+                                <img />
+                            </label>
+                            <label class="zweizweic" style="float:right">
+                                <input type="radio" name="ausstatt" id="ausstattc" value="3">
+                                <img />
+                            </label>
+
+                        </div>
                     </div>
-                    
 
+                    <script src="/static/script.js"></script>
 
                 </div>
             </div>
@@ -87,16 +126,21 @@
                 <input id="tab2-2" name="tabs-two" type="radio">
                 <div>
                     <h4>Barrierefreiheitsoption für die Fahrt</h4>
-                    <input type="checkbox" name="check" id="barrierefrei" value="barrierefrei" onclick="onlyOne(this)"> barrierefrei
+                    <input type="checkbox" name="check" id="barrierefrei" value="barrierefrei" onclick="onlyOne(this)">
+                    barrierefrei
                     <br>
-                    <input type="checkbox" name="check" id="nicht barrierefrei" value="barrierefrei" onclick="onlyOne(this)"> nicht barrierefrei
+                    <input type="checkbox" name="check" id="nicht barrierefrei" value="barrierefrei"
+                        onclick="onlyOne(this)"> nicht barrierefrei
                     <br>
                     <h4>Sonstige Angaben</h4>
-                    <textarea rows="10" cols="80" name="comment" id="kommentarfeld" form="usrform" placeholder="Sonstige Angaben"></textarea>
+                    <textarea rows="10" cols="80" name="comment" id="kommentarfeld" form="usrform"
+                        placeholder="Sonstige Angaben"></textarea>
                 </div>
                 <script src="/static/script.js"></script>
             </div>
+            <script src="/static/script.js"></script>
         </div>
+
     </form>
 </body>
 
