@@ -312,3 +312,17 @@ div.selection>label.zweizweic {
     right: 275px;
     top: 101px;
 }
+
+
+button {
+    position: relative !important;
+    width: 50%;
+    margin-top: 300px;
+    background-color: #1d1d426e;
+    color: #000000;
+    padding: 15px 0;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}

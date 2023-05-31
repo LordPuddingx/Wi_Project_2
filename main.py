@@ -70,43 +70,90 @@ def registration():
 def reg_log():
     return render_template(r"after_registration.html")
 
-@run.route("/booking")
+@run.route("/booking", methods=["GET", "POST"])
 def booking():
-    print(current_profile)
     return render_template(r"profile2.html")
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
-    #body = request.get_data()
-    body = json.loads(request.data)
-    print(body)
+    user_inputs = request.form.to_dict()
+    mapping = {"abschnitt_eins_a":[False, False, False, False], 
+               "abschnitt_eins_b":[False, False, False, False], 
+               "abschnitt_drei_a":[False, False, False, False, False], 
+               "abschnitt_drei_b":[False, False, False]}
     
+    try:
+        mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True
+        mapping["abschnitt_eins_b"][int(user_inputs["genehmingungspflicht"])] = True
+        mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
+        mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
+    except:
+        pass
+        # TODO: Error shit implementieren, dass alles ausgefühlt ist (hier nen return und dann Einblendung in html)
+
+    # TODO: Fehler abfangen falls Uhrzeit leer ist
+    uhrzeit = user_inputs["zeitpunkt"].split("T")
+    datum = uhrzeit[0].split("-")
+    print(uhrzeit)
+
     con.fahrtenbuchung(
         email=current_profile, 
-        datum = "2023-05-05",
-        ort = "Stuggi",
-        voll_teilstationaere_Behandlung = body.get("voll_teilstationaere_Behandlung"),
-        vor_nachstationaere_Behandlung = body.get("vor_nachstationaere_Behandlung"),
-        ambulante_Behandlung = body.get("ambulante_Behandlung"), 
-        anderer_Grund = body.get("anderer_Grund"), 
-        anderer_Grund_Kommentar = body.get("anderer_Grund_Kommentar"), 
-        hochfrequente_Behandlung = body.get("hochfrequente_Behandlung"), 
-        vergleichbarer_Ausnahmefall = body.get("vergleichbarer_Ausnahmefall"), 
-        dauerhafte_Mobilitätsbeeinträchtigung = body.get("dauerhafte_Mobilitaetsbeeintraechtigung"), 
-        anderer_Grund_für_Fahrt = body.get("anderer_Grund_KTW"), 
-        Taxi = body.get("taxi"), 
-        KTW = body.get("KTW"), 
-        KTW_Begründung = body.get("KTW_Begruendung"), 
-        RTW = body.get("RTW"), 
-        NAW = body.get("NAW"), 
-        andere = body.get("andere"), 
-        andere_Begründung = body.get("andere_Begruendung"), 
-        Rollstuhl = body.get("rollstuhl"), 
-        Tragestuhl = body.get("tragestuhl"), 
-        liegend = body.get("liegend"),
+        datum = datum[0]+"-"+datum[2]+"-"+datum[1]+" "+uhrzeit[1],
+        ort = user_inputs["ort"],
+
+        voll_teilstationaere_Behandlung = mapping["abschnitt_eins_a"][0],
+        vor_nachstationaere_Behandlung = mapping["abschnitt_eins_a"][1],
+        ambulante_Behandlung = mapping["abschnitt_eins_a"][2], 
+        anderer_Grund = mapping["abschnitt_eins_a"][3], 
+        anderer_Grund_Kommentar = user_inputs["einsczwei"], 
+
+        hochfrequente_Behandlung = mapping["abschnitt_eins_b"][0], 
+        vergleichbarer_Ausnahmefall = mapping["abschnitt_eins_b"][1], 
+        dauerhafte_Mobilitätsbeeinträchtigung = mapping["abschnitt_eins_b"][2], 
+        anderer_Grund_für_Fahrt = mapping["abschnitt_eins_b"][3],
+
+        Taxi = mapping["abschnitt_drei_a"][0], 
+        KTW = mapping["abschnitt_drei_a"][1], 
+        KTW_Begründung = user_inputs["zweieinsc"], 
+        RTW = mapping["abschnitt_drei_a"][2], 
+        NAW = mapping["abschnitt_drei_a"][3], 
+        andere = mapping["abschnitt_drei_a"][0], 
+        andere_Begründung = user_inputs["zweieinsd"], 
+        Rollstuhl = mapping["abschnitt_drei_b"][0], 
+        Tragestuhl = mapping["abschnitt_drei_b"][1], 
+        liegend = mapping["abschnitt_drei_a"][2],
+
     )
-    # return redirect to main page
-    return render_template(r"profile2.html")
+
+    # body = json.loads(request.data)
+    # print(body)
+    
+    # con.fahrtenbuchung(
+    #     email=current_profile, 
+    #     datum = "2023-05-05",
+    #     ort = "Stuggi",
+    #     voll_teilstationaere_Behandlung = body.get("voll_teilstationaere_Behandlung"),
+    #     vor_nachstationaere_Behandlung = body.get("vor_nachstationaere_Behandlung"),
+    #     ambulante_Behandlung = body.get("ambulante_Behandlung"), 
+    #     anderer_Grund = body.get("anderer_Grund"), 
+    #     anderer_Grund_Kommentar = body.get("anderer_Grund_Kommentar"), 
+    #     hochfrequente_Behandlung = body.get("hochfrequente_Behandlung"), 
+    #     vergleichbarer_Ausnahmefall = body.get("vergleichbarer_Ausnahmefall"), 
+    #     dauerhafte_Mobilitätsbeeinträchtigung = body.get("dauerhafte_Mobilitaetsbeeintraechtigung"), 
+    #     anderer_Grund_für_Fahrt = body.get("anderer_Grund_KTW"), 
+    #     Taxi = body.get("taxi"), 
+    #     KTW = body.get("KTW"), 
+    #     KTW_Begründung = body.get("KTW_Begruendung"), 
+    #     RTW = body.get("RTW"), 
+    #     NAW = body.get("NAW"), 
+    #     andere = body.get("andere"), 
+    #     andere_Begründung = body.get("andere_Begruendung"), 
+    #     Rollstuhl = body.get("rollstuhl"), 
+    #     Tragestuhl = body.get("tragestuhl"), 
+    #     liegend = body.get("liegend"),
+    # )
+   
+    return redirect(r"/main")
 
 @run.route("/main", methods=["GET", "POST"])
 def main():
