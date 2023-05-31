@@ -77,6 +77,9 @@ def booking():
 @run.route("/book", methods=["GET", "POST"])
 def book():
     user_inputs = request.form.to_dict()
+
+    # TODO: switch einbauen zwischen transportschein und Rechnung: vielleicht kann man den "Tab-value" dafür benutzen
+    
     mapping = {"abschnitt_eins_a":[False, False, False, False], 
                "abschnitt_eins_b":[False, False, False, False], 
                "abschnitt_drei_a":[False, False, False, False, False], 
