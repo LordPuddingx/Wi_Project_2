@@ -31,3 +31,28 @@ Drop table tblTest
 Delete from tblLogin where E_Mail like '%%'
 Delete from tblProfil where E_Mail like '%%'
 Delete from tblTest where voll_teilstationaere_Behandlung like '%%'
+
+Create table tblFahrtenbuchung (
+		email NVARCHAR(50) REFERENCES tblProfil(E_Mail) NOT NULL,
+		datum date,
+		Behandlungsstätte NVARCHAR(255),
+		voll_teilstationaere_Behandlung BIT NOT NULL,
+		vor_nachstationaere_BehandlungPw BIT NOT NULL,
+		ambulante_Behandlung BIT NOT NULL,
+		anderer_Grund BIT NOT NULL,
+		anderer_Grund_Kommentar NVARCHAR(255),
+		hochfrequente_Behandlung BIT NOT NULL,
+		vergleichbarer_Ausnahmefall BIT NOT NULL,
+		dauerhafte_Mobilitätsbeeinträchtigung BIT NOT NULL,
+		anderer_Grund_für_Fahrt BIT NOT NULL,
+		Taxi BIT NOT NULL,
+		KTW BIT NOT NULL,
+		KTW_Begründung NVARCHAR(255),
+		RTW BIT NOT NULL,
+		NAW BIT NOT NULL,
+		andere BIT NOT NULL,
+		andere_Begründung NVARCHAR(255),
+		Rollstuhl BIT NOT NULL,
+		Tragestuhl BIT NOT NULL,
+		liegend BIT NOT NULL,
+	)
