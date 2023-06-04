@@ -26,15 +26,16 @@ Create table tblTest (
 	anderer_Grund_Kommentar Nvarchar(50)
 )
 
-Drop table tblTest
+Drop table tblFahrtenbuchung
 
 Delete from tblLogin where E_Mail like '%%'
 Delete from tblProfil where E_Mail like '%%'
 Delete from tblTest where voll_teilstationaere_Behandlung like '%%'
 
+
 Create table tblFahrtenbuchung (
 		email NVARCHAR(50) REFERENCES tblProfil(E_Mail) NOT NULL,
-		datum date,
+		datum datetime,
 		Behandlungsstätte NVARCHAR(255),
 		voll_teilstationaere_Behandlung BIT NOT NULL,
 		vor_nachstationaere_BehandlungPw BIT NOT NULL,
@@ -55,4 +56,10 @@ Create table tblFahrtenbuchung (
 		Rollstuhl BIT NOT NULL,
 		Tragestuhl BIT NOT NULL,
 		liegend BIT NOT NULL,
+		begruendung_sonstige NVARCHAR(255)
 	)
+
+
+	alter table tblFahrtenbuchung add begruendung_sonstige NVARCHAR(255)
+
+	Select * from tblFahrtenbuchung
