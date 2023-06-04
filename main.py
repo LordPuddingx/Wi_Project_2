@@ -78,39 +78,48 @@ def booking():
 def book():
     user_inputs = request.form.to_dict()
     print(user_inputs)
-    print(current_profile)
 
-    # TODO: switch einbauen zwischen transportschein und Rechnung: vielleicht kann man den "Tab-value" dafür benutzen
-    
     mapping = {"abschnitt_eins_a":[False, False, False, False], 
-               "abschnitt_eins_b":[False, False, False, False], 
-               "abschnitt_drei_a":[False, False, False, False, False], 
-               "abschnitt_drei_b":[False, False, False]}
+            "abschnitt_eins_b":[False, False, False, False], 
+            "abschnitt_drei_a":[False, False, False, False, False], 
+            "abschnitt_drei_b":[False, False, False]}
     
-    try:
-        mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True
-        mapping["abschnitt_eins_b"][int(user_inputs["genehmingungspflicht"])] = True
-        mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
-        mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
-    except:
-        pass
-        # TODO: Error shit implementieren, dass alles ausgefühlt ist (hier nen return und dann Einblendung in html)
+    if user_inputs["tabs-two"] == "1":
+        try:
+            mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True
+        except:
+            pass
+        try:
+            mapping["abschnitt_eins_b"][int(user_inputs["genehmingungspflicht"])] = True
+        except:
+            pass
+        try:
+            mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
+        except:
+            pass
+        try:   
+            mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
+        except:
+            pass
+            # TODO: Error shit implementieren, dass alles ausgefühlt ist (hier nen return und dann Einblendung in html)
 
     # TODO: Fehler abfangen falls Uhrzeit leer ist
     uhrzeit = user_inputs["zeitpunkt"].split("T")
     datum = uhrzeit[0].split("-")
-    print(uhrzeit)
+    # TODO: Fehler abfangen leere Behandlungsstätte
 
     con.fahrtenbuchung(
         email=current_profile, 
         datum = datum[0]+"-"+datum[2]+"-"+datum[1]+" "+uhrzeit[1],
         ort = user_inputs["ort"],
 
+        auf_rechnung = "Nein" if user_inputs["tabs-two"] == "1" else user_inputs["check"],
+
         voll_teilstationaere_Behandlung = mapping["abschnitt_eins_a"][0],
         vor_nachstationaere_Behandlung = mapping["abschnitt_eins_a"][1],
         ambulante_Behandlung = mapping["abschnitt_eins_a"][2], 
         anderer_Grund = mapping["abschnitt_eins_a"][3], 
-        anderer_Grund_Kommentar = user_inputs["einsczwei"], 
+        anderer_Grund_Kommentar = user_inputs["einsczwei"] if user_inputs["tabs-two"] == "1" else "", 
 
         hochfrequente_Behandlung = mapping["abschnitt_eins_b"][0], 
         vergleichbarer_Ausnahmefall = mapping["abschnitt_eins_b"][1], 
@@ -119,51 +128,20 @@ def book():
 
         Taxi = mapping["abschnitt_drei_a"][0], 
         KTW = mapping["abschnitt_drei_a"][1], 
-        KTW_Begründung = user_inputs["zweieinsc"], 
+        KTW_Begründung = user_inputs["zweieinsc"] if user_inputs["tabs-two"] == "1" else "", 
         RTW = mapping["abschnitt_drei_a"][2], 
         NAW = mapping["abschnitt_drei_a"][3], 
-        andere = mapping["abschnitt_drei_a"][0], 
-        andere_Begründung = user_inputs["zweieinsd"], 
+        andere = mapping["abschnitt_drei_a"][4], 
+        andere_Begründung = user_inputs["zweieinsd"] if user_inputs["tabs-two"] == "1" else "", 
         Rollstuhl = mapping["abschnitt_drei_b"][0], 
         Tragestuhl = mapping["abschnitt_drei_b"][1], 
-        liegend = mapping["abschnitt_drei_a"][2],
+        liegend = mapping["abschnitt_drei_b"][2],
 
-        begruendung_sonstige = user_inputs["zweivier"]
-
-
-
-
-    )
-
-    # body = json.loads(request.data)
-    # print(body)
+        begruendung_sonstige = user_inputs["zweivier"] if user_inputs["tabs-two"] == "1" else user_inputs["kommentarfeld"])
     
-    # con.fahrtenbuchung(
-    #     email=current_profile, 
-    #     datum = "2023-05-05",
-    #     ort = "Stuggi",
-    #     voll_teilstationaere_Behandlung = body.get("voll_teilstationaere_Behandlung"),
-    #     vor_nachstationaere_Behandlung = body.get("vor_nachstationaere_Behandlung"),
-    #     ambulante_Behandlung = body.get("ambulante_Behandlung"), 
-    #     anderer_Grund = body.get("anderer_Grund"), 
-    #     anderer_Grund_Kommentar = body.get("anderer_Grund_Kommentar"), 
-    #     hochfrequente_Behandlung = body.get("hochfrequente_Behandlung"), 
-    #     vergleichbarer_Ausnahmefall = body.get("vergleichbarer_Ausnahmefall"), 
-    #     dauerhafte_Mobilitätsbeeinträchtigung = body.get("dauerhafte_Mobilitaetsbeeintraechtigung"), 
-    #     anderer_Grund_für_Fahrt = body.get("anderer_Grund_KTW"), 
-    #     Taxi = body.get("taxi"), 
-    #     KTW = body.get("KTW"), 
-    #     KTW_Begründung = body.get("KTW_Begruendung"), 
-    #     RTW = body.get("RTW"), 
-    #     NAW = body.get("NAW"), 
-    #     andere = body.get("andere"), 
-    #     andere_Begründung = body.get("andere_Begruendung"), 
-    #     Rollstuhl = body.get("rollstuhl"), 
-    #     Tragestuhl = body.get("tragestuhl"), 
-    #     liegend = body.get("liegend"),
-    # )
-   
     return redirect(r"/main")
+
+
 
 @run.route("/main", methods=["GET", "POST"])
 def main():
