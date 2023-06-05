@@ -70,8 +70,10 @@ from tblFahrtenbuchung Where EMail = 'DomGOD@hotmail.com'))
 
 
 
-Select Datum,
-DATEPART(yy, datum)
+Select 
+Convert(DATE, datum),
+Convert(time, datum),
+CONCAT(Datepart(hh, datum), ':', DATEPART(mi, datum))
 from tblFahrtenbuchung Where EMail = '02isdo1bwi@hft-stuttgart.de'
 
 Select 
