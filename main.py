@@ -27,6 +27,7 @@ def login():
    
     if matching:
         current_profile = e_mail
+        print(current_profile)
         return redirect("/booking")
     else:
         return render_template(r"login.html", matching = "Invalid", e_mail = e_mail)
@@ -139,13 +140,32 @@ def book():
 
         begruendung_sonstige = user_inputs["zweivier"] if user_inputs["tabs-two"] == "1" else user_inputs["kommentarfeld"])
     
-    return redirect(r"/main")
+    return redirect(r"/booking")
 
 
 
 @run.route("/main", methods=["GET", "POST"])
 def main():
-    return render_template(r"mainpage.html")
+    bookings_data = con.my_bookings(current_profile)
+    bookings_list = []
+    for row in bookings_data:
+        print(row[0])
+        column_dic = {'date': row[0], 'time': row[1], 'behandlungsstaette': row[2]}
+        bookings_list.append(column_dic)
+    print(bookings_list)
+    return render_template(r"mainpage.html", bookings_list=bookings_list)
+
+@run.route("/my_profile", methods=["GET", "POST"])
+def my_profile():
+    profile_data = con.my_profile(current_profile)
+    last_name = profile_data[0][0]
+    first_name = profile_data[0][1]
+    street = profile_data[0][2]
+    postal_code = profile_data[0][3]
+    city = profile_data[0][4]
+    region = profile_data[0][5]
+    return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
+                            postal_code = postal_code, city = city, region = region)
 
 if __name__ == "__main__":
     global con

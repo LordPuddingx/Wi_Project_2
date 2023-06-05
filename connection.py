@@ -82,3 +82,15 @@ class Connection():
         self.engine.execute(sql)
         self.engine.commit()
 
+    def my_profile(self, e_mail):
+        # sql = text(f"Select * from tblFahrtenbuchung Where email = '{e_mail}'")
+        sql = text(f"SELECT Nachname, Vorname, Strasse, PLZ, Stadt, Bundesland from tblProfil Where E_Mail = '{e_mail}'")
+        q_execute = self.engine.execute(sql)
+        profile_data = q_execute.fetchall()
+        return profile_data
+
+    def my_bookings(self, e_mail):
+        sql = text(f"Select CONCAT(Datepart(dd, datum), '.', Datepart(wk, datum), '.', Datepart(yy, datum)), CONCAT(Datepart(hh, datum), ':', DATEPART(mi, datum)), Behandlungsstätte from tblFahrtenbuchung Where EMail = '{e_mail}'")
+        q_execute = self.engine.execute(sql)
+        bookings_data = q_execute.fetchall()
+        return bookings_data

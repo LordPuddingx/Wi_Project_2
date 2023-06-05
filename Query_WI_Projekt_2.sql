@@ -6,8 +6,8 @@ Create table tblLogin (
 Insert into tblLogin (E_Mail, Pw)
 Values (
 		'DomGOD@hotmail.com',
-		'03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4'
-	) Create table tblProfil (
+		'03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4') 
+Create table tblProfil (
 		E_Mail Nvarchar(50),
 		Nachname Nvarchar(50),
 		Vorname Nvarchar(50),
@@ -16,19 +16,25 @@ Values (
 		Stadt Nvarchar(50),
 		Bundesland Nvarchar(50),
 		PRIMARY KEY (E_Mail)
-	) Create table tblTest (
+	)
+Create table tblTest (
 		voll_teilstationaere_Behandlung Nvarchar(10) NOT NULL,
 		vor_nachstationaere_BehandlungPw Nvarchar(10) NOT NULL,
 		ambulante_Behandlung Nvarchar(10) NOT NULL,
 		anderer_Grund Nvarchar(10) NOT NULL,
 		anderer_Grund_Kommentar Nvarchar(50)
-	) Drop table tblFahrtenbuchung
+	)
+	
+Drop table tblFahrtenbuchung
 Delete from tblLogin
 where E_Mail like '%%'
+
 Delete from tblProfil
 where E_Mail like '%%'
+
 Delete from tblTest
 where voll_teilstationaere_Behandlung like '%%';
+
 Create table tblFahrtenbuchung (
 	email NVARCHAR(50) REFERENCES tblProfil(E_Mail) NOT NULL,
 	datum datetime,
@@ -55,7 +61,27 @@ Create table tblFahrtenbuchung (
 	liegend BIT NOT NULL,
 	begruendung_sonstige NVARCHAR(255)
 );
+
 alter table tblFahrtenbuchung
 add begruendung_sonstige NVARCHAR(255)
+
+Select EXTRACT(Week from (Select Datum
+from tblFahrtenbuchung Where EMail = 'DomGOD@hotmail.com'))
+
+
+
+Select Datum,
+DATEPART(yy, datum)
+from tblFahrtenbuchung Where EMail = '02isdo1bwi@hft-stuttgart.de'
+
+Select 
+CONCAT(Datepart(dd, datum), '.', Datepart(wk, datum), '.', Datepart(yy, datum)),
+CONCAT(Datepart(hh, datum), ':', DATEPART(mi, datum)),
+Behandlungsstätte
+from tblFahrtenbuchung Where EMail = '02isdo1bwi@hft-stuttgart.de'
+
+Select Nachname, Vorname, Strasse, PLZ, Stadt, Bundesland
+from tblProfil Where E_Mail = 'DomGOD@hotmail.com'
+
 Select *
 from tblFahrtenbuchung
