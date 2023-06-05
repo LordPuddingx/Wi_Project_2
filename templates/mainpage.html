@@ -46,7 +46,7 @@
             <tbody>
                 {% for item in bookings_list %}
                 <tr>
-                    <td>Hallo</td>
+                    <td>{{ loop.index }}</td>
                     <td>{{ item.behandlungsstaette }}</td>
                     <td>{{ item.date }}</td>
                     <td>{{ item.time }}</td>
