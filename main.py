@@ -149,8 +149,9 @@ def main():
     bookings_data = con.my_bookings(current_profile)
     bookings_list = []
     for row in bookings_data:
+        full_date = row[0].strftime("%d/%m/%Y")
         print(row[0])
-        column_dic = {'date': row[0], 'time': row[1], 'behandlungsstaette': row[2]}
+        column_dic = {'date': full_date, 'time': row[1], 'behandlungsstaette': row[2]}
         bookings_list.append(column_dic)
     print(bookings_list)
     return render_template(r"mainpage.html", bookings_list=bookings_list)
