@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/lib/skeleton/normalize.css"/>
-    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css"/>
-    <link rel="stylesheet" href="/static/mainpage.css"/>
+    <link rel="stylesheet" href="/static/lib/skeleton/normalize.css" />
+    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css" />
+    <link rel="stylesheet" href="/static/mainpage.css" />
 
 </head>
+
 <body>
     <div class="container">
         <section class="header">
@@ -29,8 +31,8 @@
                     </ul>
                 </div>
             </div>
-    <!--        &bnsp = Leerzeichen-->
-    <!--        Absatz unter Links-->
+            <!--        &bnsp = Leerzeichen-->
+            <!--        Absatz unter Links-->
             <!-- <div style="clear: both;">&nbsp;</div> -->
         </section>
         <table class="u-full-width">
@@ -50,7 +52,7 @@
                     <td>{{ item.behandlungsstaette }}</td>
                     <td>{{ item.date }}</td>
                     <td>{{ item.time }}</td>
-                    <td>offen</td>
+                    <td><button>stornieren</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -62,4 +64,5 @@
 
     </div>
 </body>
+
 </html>
