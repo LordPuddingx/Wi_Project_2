@@ -84,7 +84,7 @@ class Connection():
 
     def my_profile(self, e_mail):
         # sql = text(f"Select * from tblFahrtenbuchung Where email = '{e_mail}'")
-        sql = text(f"SELECT Nachname, Vorname, Strasse, PLZ, Stadt, Bundesland from tblProfil Where E_Mail = '{e_mail}'")
+        sql = text(f"SELECT Nachname, Vorname, Strasse, PLZ, Stadt, Bundesland from tblProfil WHERE E_Mail = '{e_mail}'")
         q_execute = self.engine.execute(sql)
         profile_data = q_execute.fetchall()
         return profile_data

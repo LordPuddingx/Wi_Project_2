@@ -9,7 +9,7 @@ run = Flask(__name__)
 #             static_folder=r"D:\PythonProjects\Wi_Projekt_2\Bilder", 
 #             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
 
-current_profile = "02isdo1bwi@hft-stuttgart.de"
+global current_profile
 
 @run.route("/")
 def load():
@@ -28,7 +28,7 @@ def login():
     if matching:
         current_profile = e_mail
         print(current_profile)
-        return redirect("/booking")
+        return redirect("/main")
     else:
         return render_template(r"login.html", matching = "Invalid", e_mail = e_mail)
     
@@ -140,7 +140,7 @@ def book():
 
         begruendung_sonstige = user_inputs["zweivier"] if user_inputs["tabs-two"] == "1" else user_inputs["kommentarfeld"])
     
-    return redirect(r"/booking")
+    return redirect(r"/main")
 
 
 
