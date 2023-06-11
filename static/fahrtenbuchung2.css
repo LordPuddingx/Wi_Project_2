@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #dedcf0;
+    background: #ffffff;
     color: #000000;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -318,7 +318,7 @@ button {
     position: relative !important;
     width: 50%;
     margin-top: 300px;
-    background-color: #1d1d426e;
+    background-color: #ffffffff;
     color: #000000;
     padding: 15px 0;
     font-size: 20px;

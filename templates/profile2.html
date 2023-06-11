@@ -31,8 +31,8 @@
         </div>
     </div>
     <section class="header">
-<!--        &bnsp = Leerzeichen-->
-<!--        Absatz unter Links-->
+        <!--        &bnsp = Leerzeichen-->
+        <!--        Absatz unter Links-->
         <!-- <div style="clear: both;">&nbsp;</div> -->
     </section>
     <form method="POST" action="/book">
@@ -53,10 +53,14 @@
         <br>
         <br>
         <h2 align="center">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
-        <input type="datetime-local" id="zeitpunkt" name="zeitpunkt" value="<?php echo $today; ?>" max="2050-12-31"
-            min="2023-01-01">
-        <h2>Behandlungsstätte</h2>
-        <input align="center" type="text" name="ort" id="ort" placeholder="Behandlungsstätte">
+        <center>
+            <input type="datetime-local" id="zeitpunkt" name="zeitpunkt" value="<?php echo $today; ?>" max="2050-12-31"
+                min="2023-01-01" style="width: 500px">
+            <br>
+            <br>
+            <h2>Behandlungsstätte</h2>
+            <input align="center" type="text" name="ort" id="ort" placeholder="Behandlungsstätte" style="width: 500px">
+        </center>
         <br>
         <br>
         <div class="tabs">
@@ -66,7 +70,9 @@
                 <input id="tab2-1" name="tabs-two" type="radio" checked="checked" value="1">
 
                 <div>
-                    <h4>bitte füllen Sie den Transportschein so aus, wie Sie ihn vom Arzt erhalten haben.</h4>
+                    <br>
+                    <h4 style="margin-left: 100%;">bitte füllen Sie den Transportschein so aus, wie Sie ihn vom Arzt
+                        erhalten haben!</h4>
 
                     <div class="tschein">
                         <div class="selection">
@@ -173,7 +179,9 @@
                 </div>
             </div>
         </div>
-        <div align="center"><button onclick="checkRadio()">Check Radio</button></div>
+        <br>
+        <br>
+        <div align="center"><button onclick="checkRadio()">Buchen</button></div>
     </form>
 
 
