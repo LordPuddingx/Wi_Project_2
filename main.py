@@ -165,8 +165,43 @@ def my_profile():
     postal_code = profile_data[0][3]
     city = profile_data[0][4]
     region = profile_data[0][5]
+
     return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region)
+
+@run.route("/myprof", methods=["GET", "POST"])
+def my_prof():
+    profile_data = con.my_profile(current_profile)
+    last_name = profile_data[0][0]
+    first_name = profile_data[0][1]
+    street = profile_data[0][2]
+    postal_code = profile_data[0][3]
+    city = profile_data[0][4]
+    region = profile_data[0][5]
+
+    user_inputs = request.form.to_dict()
+
+    if "speichern" in user_inputs:
+        con.change_profile_data(
+            e_mail = current_profile,
+            nachname = user_inputs["last_name"],
+            vorname = user_inputs["first_name"],
+            strasse = user_inputs["street"], 
+            plz = user_inputs["postal_code"], 
+            stadt = user_inputs["city"], 
+            bundesland = user_inputs["region"])
+        return redirect("/main")
+    elif "old_pw" in user_inputs:
+        if con.login(current_profile, user_inputs["old_pw"]):
+            con.change_pw(email=current_profile, pw=user_inputs["new_pw"])
+            return redirect("/main")
+        else:
+            return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
+                            postal_code = postal_code, city = city, region = region, matching = "Invalid")
+        
+    return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
+                            postal_code = postal_code, city = city, region = region)
+    
 
 if __name__ == "__main__":
     global con

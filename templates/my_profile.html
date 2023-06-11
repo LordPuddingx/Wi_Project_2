@@ -1,136 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/static/lib/skeleton/normalize.css"/>
-    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css"/>
-    <link rel="stylesheet" href="/static/my_profile.css"/>
+    <link rel="stylesheet" href="/static/lib/skeleton/normalize.css" />
+    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css" />
+    <link rel="stylesheet" href="/static/my_profile.css" />
 
 </head>
+
 <body>
-    <div class="container">
-        <section class="header">
-            <div class="row">
-                <div class="six columns">
-                    <p style="text-align: left;">Mein Profil</p>
+    <form method="POST" action="/myprof">
+        <div class="container">
+            <section class="header">
+                <div class="row">
+                    <div class="six columns">
+                        <p style="text-align: left;">Mein Profil</p>
+                    </div>
+                    <div class="six columns">
+                        <ul class="navigation">
+                            <li class="navigation-item">
+                                <a href="/main">Meine Fahrtbuchungen</a>
+                            </li>
+                            <li class="navigation-item">
+                                <a href="/booking">Fahrt buchen</a>
+                            </li>
+                            <li class="navigation-item">
+                                <a href="/my_profile">Mein Profil</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="six columns">
-                    <ul class="navigation">
-                        <li class="navigation-item">
-                            <a href="/main">Meine Fahrtbuchungen</a>
-                        </li>
-                        <li class="navigation-item">
-                            <a href="/booking">Fahrt buchen</a>
-                        </li>
-                        <li class="navigation-item">
-                            <a href="/my_profile">Mein Profil</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <table class="u-full-width">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>
-                        <label style="text-align: center;">Mein Profil bearbeiten</label>  
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <label>Nachname</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Nachname" name="last_name" id="last_name"
-                        value="{% if last_name != None %}{{ last_name }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Vorname</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Vorname" name="first_name" id="first_name"
-                        value="{% if first_name != None %}{{ first_name }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Straße</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Straße" name="street" id="street"
-                        value="{% if street != None %}{{ street }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Postleitzahl</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Postleitzahl" name="postal_code" id="postal_code"
-                        value="{% if postal_code != None %}{{ postal_code }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Stadt</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Stadt" name="city" id="city"
-                        value="{% if city != None %}{{ city }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Bundesland</label>
-                    </td>
-                    <td>
-                        <input type="text" placeholder="Bundesland" name="region" id="region"
-                        value="{% if region != None %}{{ region }}{% endif%}">
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button>Speichern</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <label style="text-align: center;">Passwort ändern</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Altes Passwort</label>
-                    </td>
-                    <td>
-                        <input type="password" placeholder="Altes Passwort" name="old_pw" id="old_pw">   
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label>Neues Passwort</label>
-                    </td>
-                    <td>
-                        <input type="password" placeholder="Neues Passwort" name="new_pw" id="new_pw">   
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <button>Passwort ändern</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+            </section>
+
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <label style="text-align: center;">Mein Profil bearbeiten</label>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label>Nachname</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Nachname" name="last_name" id="last_name"
+                                value="{% if last_name != None %}{{ last_name }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Vorname</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Vorname" name="first_name" id="first_name"
+                                value="{% if first_name != None %}{{ first_name }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Straße</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Straße" name="street" id="street"
+                                value="{% if street != None %}{{ street }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Postleitzahl</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Postleitzahl" name="postal_code" id="postal_code"
+                                value="{% if postal_code != None %}{{ postal_code }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Stadt</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Stadt" name="city" id="city"
+                                value="{% if city != None %}{{ city }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Bundesland</label>
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Bundesland" name="region" id="region"
+                                value="{% if region != None %}{{ region }}{% endif%}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="speichern" name="speichern" value="data">Speichern</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <label style="text-align: center;">Passwort ändern</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Altes Passwort</label>
+                        </td>
+                        <td>
+                            <input type="password" placeholder="Altes Passwort" name="old_pw" id="old_pw">
+                            {% if matching %}
+
+                            <label style="color: red;">Das angegebenen Passwort ist leider nicht korrekt!</label>
+
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Neues Passwort</label>
+                        </td>
+                        <td>
+                            <input type="password" placeholder="Neues Passwort" name="new_pw" id="new_pw">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button id="pw_ändern" name="pw_ändern" value="pw">Passwort ändern</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
 </body>
+
 </html>

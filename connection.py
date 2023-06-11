@@ -94,3 +94,14 @@ class Connection():
         q_execute = self.engine.execute(sql)
         bookings_data = q_execute.fetchall()
         return bookings_data
+    
+    def change_profile_data(self, e_mail, nachname, vorname, strasse, plz, stadt, bundesland):
+        sql = text(f"UPDATE tblProfil SET Nachname = '{nachname}', Vorname = '{vorname}', Strasse = '{strasse}', PLZ = '{plz}', Stadt = '{stadt}', Bundesland = '{bundesland}' WHERE E_Mail LIKE '{e_mail}'")
+        self.engine.execute(sql)
+        self.engine.commit()
+
+    def change_pw(self, email, pw):
+        pw_hash = hashlib.sha256(pw.encode("UTF-8")).hexdigest()
+        sql = text(f"UPDATE tblLogin SET Pw = '{pw_hash}' WHERE E_Mail LIKE '{email}'")
+        self.engine.execute(sql)
+        self.engine.commit()
