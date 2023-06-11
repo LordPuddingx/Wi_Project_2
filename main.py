@@ -84,30 +84,28 @@ def book():
             "abschnitt_eins_b":[False, False, False, False], 
             "abschnitt_drei_a":[False, False, False, False, False], 
             "abschnitt_drei_b":[False, False, False]}
-    
-    if user_inputs["tabs-two"] == "1":
-        try:
-            mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True
-        except:
-            pass
-        try:
-            mapping["abschnitt_eins_b"][int(user_inputs["genehmingungspflicht"])] = True
-        except:
-            pass
-        try:
-            mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
-        except:
-            pass
-        try:   
-            mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
-        except:
-            pass
-            # TODO: Error shit implementieren, dass alles ausgefühlt ist (hier nen return und dann Einblendung in html)
 
-    # TODO: Fehler abfangen falls Uhrzeit leer ist
-    uhrzeit = user_inputs["zeitpunkt"].split("T")
-    datum = uhrzeit[0].split("-")
-    # TODO: Fehler abfangen leere Behandlungsstätte
+    # Checken ob ein Datum eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
+    if user_inputs["zeitpunkt"] == "":
+        return render_template(r"profile2.html", datum_check = "Invalid")
+    else:
+        uhrzeit = user_inputs["zeitpunkt"].split("T")
+        datum = uhrzeit[0].split("-")
+
+    # Checken ob ein Ort eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
+    if user_inputs["ort"] == "":
+        return render_template(r"profile2.html", ort_check = "Invalid")
+
+
+    if user_inputs["tabs-two"] == "1":
+        if "genehmingungsfrei" in user_inputs and "genehmingungspflicht" in user_inputs and "art" in user_inputs and "ausstatt":
+            mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True
+            mapping["abschnitt_eins_b"][int(user_inputs["genehmingungspflicht"])] = True
+            mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
+            mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
+        else:
+            return render_template(r"profile2.html", tp_schein_check = "Invalid")
+
 
     con.fahrtenbuchung(
         email=current_profile, 

@@ -10,25 +10,12 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="six columns">
-                <p style="text-align: left;">Fahrtenbuchung</p>
-            </div>
-            <div class="six columns">
-                <ul class="navigation">
-                    <li class="navigation-item">
-                        <a href="/main">Meine Fahrtbuchungen</a>
-                    </li>
-                    <li class="navigation-item">
-                        <a href="/booking">Fahrt buchen</a>
-                    </li>
-                    <li class="navigation-item">
-                        <a href="/my_profile">Mein Profil</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="btn-group">
+        <a href="/main"><button class="menu">Meine Fahrten</button></a>
+        <a href="/booking"><button class="menu" style="background-color: #202047;">Fahrt buchen</button></a>
+        <a href="/my_profile"><button class="menu">Mein Profil</button></a>
+    </div>
+
     </div>
     <section class="header">
         <!--        &bnsp = Leerzeichen-->
@@ -37,29 +24,27 @@
     </section>
     <form method="POST" action="/book">
         <h1> Fahrtenbuchung </h1>
-        <!-- <form method="GET" action="/booking">
-        <div align="center" method="POST">
-            <br>
-            <br>
-            <h2 for="start">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
-            <input type="datetime-local" id="zeitpunkt" name="datetime" value="<?php echo $today; ?>" max="2050-12-31"
-                min="2023-01-01">
-            <h2 for="start">Behandlungsstätte</h2>
-            <input type="text" name="staette" id="zeitpunkt">
-            <br>
-            <br>
-        </div>
-        </form> -->
+
         <br>
         <br>
         <h2 align="center">Geben Sie hier das Datum und die Uhrzeit ihres Termines ein.</h2>
         <center>
             <input type="datetime-local" id="zeitpunkt" name="zeitpunkt" value="<?php echo $today; ?>" max="2050-12-31"
                 min="2023-01-01" style="width: 500px">
+            {% if datum_check %}
+
+            <h4 style="color: red;">Bitte geben Sie ein gültiges Datum ein!</h4>
+
+            {% endif %}
             <br>
             <br>
             <h2>Behandlungsstätte</h2>
             <input align="center" type="text" name="ort" id="ort" placeholder="Behandlungsstätte" style="width: 500px">
+            {% if ort_check %}
+
+            <h4 style="color: red;">Bitte geben Sie einen Ort ein!</h4>
+
+            {% endif %}
         </center>
         <br>
         <br>
@@ -70,9 +55,14 @@
                 <input id="tab2-1" name="tabs-two" type="radio" checked="checked" value="1">
 
                 <div>
-                    <br>
                     <h4 style="margin-left: 100%;">bitte füllen Sie den Transportschein so aus, wie Sie ihn vom Arzt
                         erhalten haben!</h4>
+
+                    {% if tp_schein_check %}
+                    <h4 style="color: red; margin-left: 100%;">Bitte füllen Sie den Transportschein vollständig aus!
+                    </h4>
+
+                    {% endif %}
 
                     <div class="tschein">
                         <div class="selection">
@@ -181,7 +171,7 @@
         </div>
         <br>
         <br>
-        <div align="center"><button onclick="checkRadio()">Buchen</button></div>
+        <div align="center"><button class="buchen" onclick="checkRadio()">Buchen</button></div>
     </form>
 
 

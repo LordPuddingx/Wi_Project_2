@@ -149,7 +149,7 @@ div.tschein {
     background-repeat: no-repeat;
     transform: translate(-50%, -50%);
     background-size: 100%;
-    margin-top: 200px;
+    margin-top: 150px;
     padding: 0px 0px;
 }
 
@@ -235,7 +235,7 @@ div.selection>label.einsf {
 
 div.tschein_2 {
     background-image: url("/static/images/Tschein2.jpg");
-    margin-top: 550px;
+    margin-top: 500px;
     left: 50%;
     width: 586px;
     height: 382px;
@@ -314,10 +314,10 @@ div.selection>label.zweizweic {
 }
 
 
-button {
+button.buchen {
     position: relative !important;
     width: 50%;
-    margin-top: 300px;
+    margin-top: 250px;
     background-color: #ffffffff;
     color: #000000;
     padding: 15px 0;
@@ -325,4 +325,31 @@ button {
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
+}
+
+button.buchen:hover {
+    background-color: #5454b96e;
+}
+
+.btn-group button.menu {
+    background-color: #1d1d426e;
+    border: 1px solid #1d1d426e;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer;
+    float: right;
+}
+
+.btn-group button.menu:not(:last-child) {
+    border-right: none;
+}
+
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.btn-group button.menu:hover {
+    background-color: #5454b96e;
 }
