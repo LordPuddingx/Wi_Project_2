@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-import json
+from datetime import datetime
 
 import connection, mail
 
@@ -88,6 +88,9 @@ def book():
     # Checken ob ein Datum eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
     if user_inputs["zeitpunkt"] == "":
         return render_template(r"profile2.html", datum_check = "Invalid")
+    elif user_inputs["zeitpunkt"] < str(datetime.now()):
+        return render_template(r"profile2.html", datum_check_2 = "Invalid")
+
     else:
         uhrzeit = user_inputs["zeitpunkt"].split("T")
         datum = uhrzeit[0].split("-")
