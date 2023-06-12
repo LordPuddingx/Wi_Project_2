@@ -52,7 +52,7 @@
 
             <div class="tab-2">
                 <label for="tab2-1">Mit Transportschein</label>
-                <input id="tab2-1" name="tabs-two" type="radio" checked="checked" value="1">
+                <input id="tab2-1" name="tabs-two" type="radio" value="1" checked>
 
                 <div>
                     <h4 style="margin-left: 100%;">bitte füllen Sie den Transportschein so aus, wie Sie ihn vom Arzt
@@ -154,7 +154,7 @@
             </div>
             <div class="tab-2">
                 <label for="tab2-2">Auf Rechnung</label>
-                <input id="tab2-2" name="tabs-two" type="radio" value="2">
+                <input id="tab2-2" name="tabs-two" type="radio" value="2" {% if tab_two %}checked{% endif%}>
                 <div>
                     <h4>Barrierefreiheitsoption für die Fahrt</h4>
                     <input type="checkbox" name="check" id="barrierefrei" value="barrierefrei" onclick="onlyOne(this)">
@@ -163,6 +163,10 @@
                     <input type="checkbox" name="check" id="nicht barrierefrei" value="nicht barrierefrei"
                         onclick="onlyOne(this)"> nicht barrierefrei
                     <br>
+                    {% if rechnung_check %}
+                    <h4 style="color: red; margin-left: 100%;">Bitte wählen Sie eine der beiden Optionen!
+                    </h4>
+                    {% endif %}
                     <h4>Sonstige Angaben</h4>
                     <textarea rows="10" cols="80" name="kommentarfeld" id="kommentarfeld" style="resize: none"
                         placeholder="Sonstige Angaben"></textarea>

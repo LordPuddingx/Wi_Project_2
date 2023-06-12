@@ -106,6 +106,9 @@ def book():
         else:
             return render_template(r"profile2.html", tp_schein_check = "Invalid")
 
+    if user_inputs["tabs-two"] != "1" and "check" not in user_inputs:
+        return render_template(r"profile2.html", rechnung_check = "Invalid", tab_two = "checked")
+
 
     con.fahrtenbuchung(
         email=current_profile, 
@@ -188,7 +191,7 @@ def my_prof():
             plz = user_inputs["postal_code"], 
             stadt = user_inputs["city"], 
             bundesland = user_inputs["region"])
-        return redirect("/main")
+        return redirect("/myprof")
     elif "old_pw" in user_inputs:
         if con.login(current_profile, user_inputs["old_pw"]):
             con.change_pw(email=current_profile, pw=user_inputs["new_pw"])
