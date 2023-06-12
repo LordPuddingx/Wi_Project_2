@@ -318,8 +318,8 @@ button.buchen {
     position: relative !important;
     width: 50%;
     margin-top: 250px;
-    background-color: #ffffffff;
-    color: #000000;
+    background-color: #1d1d426e;
+    border-color: #1d1d426e;
     padding: 15px 0;
     font-size: 20px;
     font-weight: 600;
