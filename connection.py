@@ -88,9 +88,9 @@ class Connection():
         q_execute = self.engine.execute(sql)
         profile_data = q_execute.fetchall()
         return profile_data
-
+#Convert(DATE, datum)
     def my_bookings(self, e_mail):
-        sql = text(f"SELECT ID, Convert(DATE, datum), CONCAT(Datepart(hh, datum), ':', DATEPART(mi, datum)), Behandlungsstätte from tblFahrtenbuchung WHERE EMail = '{e_mail}' AND datum > GETDATE() ORDER BY datum ASC")
+        sql = text(f"SELECT ID, Datum, Behandlungsstätte from tblFahrtenbuchung WHERE EMail = '{e_mail}' AND datum > GETDATE() ORDER BY datum ASC")
         q_execute = self.engine.execute(sql)
         bookings_data = q_execute.fetchall()
         return bookings_data

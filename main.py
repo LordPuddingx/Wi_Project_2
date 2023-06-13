@@ -149,16 +149,17 @@ def book():
     return redirect(r"/main")
 
 
-
 @run.route("/main", methods=["GET", "POST"])
 def main():
     bookings_data = con.my_bookings(current_profile)
     bookings_list = []
     for row in bookings_data:
         full_date = row[1].strftime("%d/%m/%Y")
-        column_dic = {'id': row[0],'date': full_date, 'time': row[2], 'behandlungsstaette': row[3]}
+        time = row[1].strftime("%H:%M")
+        column_dic = {'id': row[0],'date': full_date, 'time': time, 'behandlungsstaette': row[2]}
         bookings_list.append(column_dic)
 
+    print(bookings_list)
     user_inputs = request.form.to_dict()
 
     if "cancel" in user_inputs:
