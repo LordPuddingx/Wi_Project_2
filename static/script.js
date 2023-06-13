@@ -12,7 +12,7 @@ function booked() {
             window.setTimeout(window.location.reload(), 1000);
 
         }
-};
+    };
     xhr.send(JSON.stringify(data));
 }
 
@@ -28,9 +28,8 @@ function deleteBooking() {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             alert("Fahrtbuchung erfolgreich storniert!");
             window.setTimeout(window.location.reload(), 1000);
-
         }
-};
+    };
     xhr.send(JSON.stringify(data));
 }
 

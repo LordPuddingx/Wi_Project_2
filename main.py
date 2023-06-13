@@ -175,7 +175,8 @@ def main():
         id = user_inputs["cancel"]
         print(id)
         con.delete_booking(id)
-        redirect("/main")
+        
+        return redirect("/main")
     return render_template(r"mainpage.html", bookings_list=bookings_list)
 
 @run.route("/my_profile", methods=["GET", "POST"])
