@@ -10,6 +10,7 @@ run = Flask(__name__)
 #             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
 
 global current_profile
+current_profile = 'DomGOD@hotmail.com'
 
 @run.route("/")
 def load():
@@ -153,11 +154,17 @@ def main():
     bookings_data = con.my_bookings(current_profile)
     bookings_list = []
     for row in bookings_data:
-        full_date = row[0].strftime("%d/%m/%Y")
-        print(row[0])
-        column_dic = {'date': full_date, 'time': row[1], 'behandlungsstaette': row[2]}
+        full_date = row[1].strftime("%d/%m/%Y")
+        column_dic = {'id': row[0],'date': full_date, 'time': row[2], 'behandlungsstaette': row[3]}
         bookings_list.append(column_dic)
-    print(bookings_list)
+
+    user_inputs = request.form.to_dict()
+
+    if "cancel" in user_inputs:
+        id = user_inputs["cancel"]
+        print(id)
+        con.delete_booking(id)
+        redirect("/main")
     return render_template(r"mainpage.html", bookings_list=bookings_list)
 
 @run.route("/my_profile", methods=["GET", "POST"])
@@ -186,6 +193,7 @@ def my_prof():
     user_inputs = request.form.to_dict()
 
     if "speichern" in user_inputs:
+        print(user_inputs)
         con.change_profile_data(
             e_mail = current_profile,
             nachname = user_inputs["last_name"],

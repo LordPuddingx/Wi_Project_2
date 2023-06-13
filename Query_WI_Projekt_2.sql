@@ -36,6 +36,7 @@ Delete from tblTest
 where voll_teilstationaere_Behandlung like '%%';
 
 Create table tblFahrtenbuchung (
+	ID int NOT NULL IDENTITY(1,1) PRIMARY KEY,
 	email NVARCHAR(50) REFERENCES tblProfil(E_Mail) NOT NULL,
 	datum datetime,
 	Behandlungsstätte NVARCHAR(255),
