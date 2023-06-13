@@ -17,6 +17,7 @@
             <a href="/booking"><button class="menu">Fahrt buchen</button></a>
             <a href="/my_profile"><button class="menu">Mein Profil</button></a>
         </div>
+        <label style="float:right">Fragen? Kontaktieren Sie uns: +00 420 1234567</label>
         <form action="/main" method="POST">
             <h1>Meine Fahrtenbuchung</h1>
             <table class="u-full-width">
@@ -37,7 +38,8 @@
                         <td>{{ item.date }}</td>
                         <td>{{ item.time }}</td>
                         <td>
-                            <button onclick="deleteBooking(this)" name="cancel" id="cancel" value="{{ item.id }}">stornieren</button>
+                            <button onclick="deleteBooking(this)" name="cancel" id="cancel"
+                                value="{{ item.id }}">stornieren</button>
                         </td>
                     </tr>
                     {% endfor %}

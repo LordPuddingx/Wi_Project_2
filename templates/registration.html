@@ -12,9 +12,12 @@
 <body>
     <form method="POST" action="/registration">
         <h3>Registrierung</h3>
-
+        {% if vollstaendig %}
+        <h4 style="color: red;">Bitte füllen Sie alle Felder vollständig aus</h4>
+        {% endif %}
         <div style="float:left">
             <br\>
+
                 <label>Nachname</label>
                 <input type="text" placeholder="Nachname" name="last_name" id="last_name"
                     value="{% if last_name != None %}{{ last_name }}{% endif%}">
@@ -33,6 +36,10 @@
 
                 {% if pw_matching == "Invalid" %}
                 <h4 class="invalid" style="color: red;">Passwörter stimmen nicht überein!</h4>
+                {% endif %}
+                {% if pw_length %}
+                <h4 style="color: red;">Das Passwort muss mindestens 5 Zeichen lang sein <br> eine Zahl entahlten
+                </h4>
                 {% endif %}
 
                 <label>E-Mail</label>
@@ -55,13 +62,15 @@
             <input type="text" placeholder="Postleitzahl" name="postal_code" id="postal_code"
                 value="{% if postal_code != None %}{{ postal_code }}{% endif%}">
 
-            <label>Straße</label>
+            <label>Straße & Hausnummer</label>
             <input type="text" placeholder="Straße" name="street" id="street"
                 value="{% if street != None %}{{ street }}{% endif%}">
 
             <label>Passwort wiederholen</label>
             <input type="password" placeholder="Passwort wiederholen" name="pw_w" id="pw_w">
-
+            {% if pw_length %}
+            <h4 style="color: red;">mindestens einen Groß- und Kleinbuchstaben sowie</h4>
+            {% endif %}
 
 
             <button>Registrieren</button>

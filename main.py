@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
+import re
 
 import connection, mail
 
@@ -51,21 +52,29 @@ def registration():
     city = user_inputs["city"]
     region = user_inputs["region"]
 
-    pw_matching = None
+    if e_mail == "" or last_name == "" or first_name == "" or street == "" or postal_code == "" or city == "" or region == "":
+        return render_template(r"registration.html", vollstaendig = "Invalid", vollstaendig_2 = "Invalid", 
+                               e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
+                               postal_code = postal_code, city = city, region = region)
+    
     if pw != pw_w:
-        pw_matching = "Invalid"
-        # return render_template(r"registration.html", pw_matching = "Invalid", 
-        #                        e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
-        #                        postal_code = postal_code, city = city, region = region)
+        return render_template(r"registration.html", pw_matching = "Invalid", 
+                               e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
+                               postal_code = postal_code, city = city, region = region)
+    elif len(pw) < 5 or re.search(r"[A-Z]", pw) is None or re.search(r"[a-z]", pw) is None or re.search(r"\d", pw) is None:
+        return render_template(r"registration.html", pw_length = "Invalid", 
+                               e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
+                               postal_code = postal_code, city = city, region = region)
 
     e_mail_not_exists = con.existing_email(e_mail) and mail.check_mail(e_mail)
 
-    if e_mail_not_exists and pw_matching == None:
+
+    if e_mail_not_exists:
         con.new_profil(e_mail, pw, last_name, first_name, street, postal_code, city, region)
         mail.write_mail(e_mail)
         return redirect("/reg_log")
     
-    return render_template(r"registration.html", e_mail_exists= None if e_mail_not_exists else "Invalid", pw_matching = pw_matching,
+    return render_template(r"registration.html", e_mail_exists= None if e_mail_not_exists else "Invalid",
                             e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region)
 

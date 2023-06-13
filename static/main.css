@@ -80,13 +80,31 @@ button.buchen:hover {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
 td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #E1E1E1; }
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #E1E1E1;
+}
+
 th:first-child,
 td:first-child {
-  padding-left: 0; }
+    padding-left: 0;
+}
+
 th:last-child,
 td:last-child {
-  padding-right: 0; }
+    padding-right: 0;
+}
 
+button.safe {
+    margin-top: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 15px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.safe:hover {
+    background-color: #5454b96e;
+}

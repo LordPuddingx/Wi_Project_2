@@ -17,6 +17,7 @@
             <a href="/booking"><button class="menu">Fahrt buchen</button></a>
             <a href="/my_profile"><button class="menu" style="background-color: #202047;">Mein Profil</button></a>
         </div>
+        <label style="float:right">Fragen? Kontaktieren Sie uns: +00 420 1234567</label>
         <form method="POST" action="/myprof">
             <div class="container">
                 <h1>Mein Profil</h1>
@@ -87,7 +88,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <button id="speichern" name="speichern" value="data">Speichern</button>
+                                <button class="safe" id="speichern" name="speichern" value="data">Speichern</button>
                             </td>
                         </tr>
                         <tr>
@@ -103,9 +104,9 @@
                             <td>
                                 <input type="password" placeholder="Altes Passwort" name="old_pw" id="old_pw">
                                 {% if matching %}
-    
+
                                 <label style="color: red;">Das angegebenen Passwort ist leider nicht korrekt!</label>
-    
+
                                 {% endif %}
                             </td>
                         </tr>
@@ -120,7 +121,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <button id="pw_ändern" name="pw_ändern" value="pw">Passwort ändern</button>
+                                <button class="safe" id="pw_ändern" name="pw_ändern" value="pw">Passwort ändern</button>
                             </td>
                         </tr>
                     </tbody>
