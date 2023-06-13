@@ -49,10 +49,10 @@
                 {% for item in bookings_list %}
                 <tr>
                     <td>{{ loop.index }}</td>
-                    <td>{{ item.behandlungsstaette }}</td>
-                    <td>{{ item.date }}</td>
-                    <td>{{ item.time }}</td>
-                    <td><button>stornieren</button></td>
+                    <td name="behandlungsstaette" id="behandlungsstaette">{{ item.behandlungsstaette }}</td>
+                    <td name="date" id="date">{{ item.date }}</td>
+                    <td name="time" id="time">{{ item.time }}</td>
+                    <td name="cancel" id="cancel"><button>stornieren</button></td>
                 </tr>
                 {% endfor %}
             </tbody>
