@@ -10,6 +10,7 @@ run = Flask(__name__)
 #             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
 
 global current_profile
+# Nicht vergessen zu löschen!
 current_profile = 'DomGOD@hotmail.com'
 
 @run.route("/")
