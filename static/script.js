@@ -1,36 +1,19 @@
+function registration(vollstaendig) {
+    if (vollstaendig != null || vollstaendig != "Invalid") {
+        alert("Registrierung erfolgreich abgeschlossen!");
+        console.log(vollstaendig);     
+    } else {
+        alert("Registrierung nicht erfolgreich abgeschlossen!");
+        console.log(vollstaendig);
+    }
+}
+
 function booked() {
-    let data = {
-    };
-    var xhr = new XMLHttpRequest();
-    var url = "http://127.0.0.1:5000/main";
-
-    xhr.open('POST', url, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert("Fahrtbuchung erfolgreich angelegt!");
-            window.setTimeout(window.location.reload(), 1000);
-
-        }
-    };
-    xhr.send(JSON.stringify(data));
+    alert("Fahrtbuchung erfolgreich angelegt!");      
 }
 
 function deleteBooking() {
-    let data = {
-    };
-    var xhr = new XMLHttpRequest();
-    var url = "http://127.0.0.1:5000/main";
-
-    xhr.open('POST', url, false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert("Fahrtbuchung erfolgreich storniert!");
-            window.setTimeout(window.location.reload(), 1000);
-        }
-    };
-    xhr.send(JSON.stringify(data));
+    alert("Fahrtbuchung erfolgreich storniert!");
 }
 
 function onlyOne(checkbox) {

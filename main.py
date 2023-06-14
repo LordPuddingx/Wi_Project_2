@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Response
 from datetime import datetime
 import re
 
@@ -56,6 +56,7 @@ def registration():
         return render_template(r"registration.html", vollstaendig = "Invalid", vollstaendig_2 = "Invalid", 
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                                postal_code = postal_code, city = city, region = region)
+
     
     if pw != pw_w:
         return render_template(r"registration.html", pw_matching = "Invalid", 
@@ -80,7 +81,7 @@ def registration():
 
 @run.route("/reg_log")
 def reg_log():
-    return render_template(r"after_registration.html")
+    return render_template(r"login.html")
 
 @run.route("/booking", methods=["GET", "POST"])
 def booking():

@@ -7,7 +7,7 @@
     <!-- <link rel="stylesheet" href="/static/lib/skeleton/normalize.css" />
     <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css" /> -->
     <link rel="stylesheet" href="/static/main.css" />
-
+    <script src="/static/script.js"></script>    
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                         <td>{{ item.date }}</td>
                         <td>{{ item.time }}</td>
                         <td>
-                            <button class="safe" onclick="deleteBooking(this)" name="cancel" id="cancel"
+                            <button class="safe" onclick="deleteBooking()" name="cancel" id="cancel"
                                 value="{{ item.id }}">stornieren</button>
                         </td>
                     </tr>
