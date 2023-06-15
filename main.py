@@ -212,10 +212,10 @@ def my_prof():
             bundesland = user_inputs["region"])
         return redirect("/myprof")
     elif "old_pw" in user_inputs:
-        if len(user_inputs["new_pw"]) < 5 or re.search(r"[A-Z]", user_inputs["new_pw"]) is None or re.search(r"[a-z]", user_inputs["new_pw"]) is None or re.search(r"\d", user_inputs["new_pw"]) is None:
-            return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
-                            postal_code = postal_code, city = city, region = region,  pw_neu_check= "Invalid")
         if con.login(current_profile, user_inputs["old_pw"]):
+            if len(user_inputs["new_pw"]) < 5 or re.search(r"[A-Z]", user_inputs["new_pw"]) is None or re.search(r"[a-z]", user_inputs["new_pw"]) is None or re.search(r"\d", user_inputs["new_pw"]) is None:
+                return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
+                            postal_code = postal_code, city = city, region = region,  pw_neu_check= "Invalid")
             con.change_pw(email=current_profile, pw=user_inputs["new_pw"])
             return redirect("/myprof")
         else:
