@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!-- <link rel="stylesheet" href="/static/lib/skeleton/normalize.css" />
-    <link rel="stylesheet" href="/static/lib/skeleton/skeleton.css" /> -->
     <link rel="stylesheet" href="/static/main.css" />
 
 </head>
@@ -13,6 +11,7 @@
 <body>
     <div class="container">
         <div class="btn-group">
+            <a href="/"><button class="menu">Ausloggen</button></a>
             <a href="/main"><button class="menu">Meine Fahrten</button></a>
             <a href="/booking"><button class="menu">Fahrt buchen</button></a>
             <a href="/my_profile"><button class="menu" style="background-color: #202047;">Mein Profil</button></a>
@@ -104,7 +103,7 @@
                             <td>
                                 <input type="password" placeholder="Altes Passwort" name="old_pw" id="old_pw">
                                 {% if matching %}
-
+                                <br>
                                 <label style="color: red;">Das angegebenen Passwort ist leider nicht korrekt!</label>
 
                                 {% endif %}

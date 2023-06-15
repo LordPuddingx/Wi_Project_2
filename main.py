@@ -6,16 +6,13 @@ import connection, mail
 
 run = Flask(__name__)
 
-# run = Flask(__name__, 
-#             static_folder=r"D:\PythonProjects\Wi_Projekt_2\Bilder", 
-#             template_folder=r"D:\PythonProjects\Wi_Projekt_2")'
-
 global current_profile
 # Nicht vergessen zu löschen!
-current_profile = 'DomGOD@hotmail.com'
+# current_profile = 'DomGOD@hotmail.com'
 
 @run.route("/")
 def load():
+    current_profile = ""
     return render_template("login.html")
 
 @run.route("/login", methods=["GET", "POST"])
@@ -84,7 +81,7 @@ def reg_log():
 
 @run.route("/booking", methods=["GET", "POST"])
 def booking():
-    return render_template(r"profile2.html")
+    return render_template(r"booking.html")
 
 @run.route("/book", methods=["GET", "POST"])
 def book():
@@ -98,9 +95,9 @@ def book():
 
     # Checken ob ein Datum eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
     if user_inputs["zeitpunkt"] == "":
-        return render_template(r"profile2.html", datum_check = "Invalid")
+        return render_template(r"booking.html", datum_check = "Invalid")
     elif user_inputs["zeitpunkt"] < str(datetime.now()):
-        return render_template(r"profile2.html", datum_check_2 = "Invalid")
+        return render_template(r"booking.html", datum_check_2 = "Invalid")
 
     else:
         uhrzeit = user_inputs["zeitpunkt"].split("T")
@@ -108,7 +105,7 @@ def book():
 
     # Checken ob ein Ort eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
     if user_inputs["ort"] == "":
-        return render_template(r"profile2.html", ort_check = "Invalid")
+        return render_template(r"booking.html", ort_check = "Invalid")
 
 
     if user_inputs["tabs-two"] == "1":
@@ -118,10 +115,10 @@ def book():
             mapping["abschnitt_drei_a"][int(user_inputs["art"])] = True
             mapping["abschnitt_drei_b"][int(user_inputs["ausstatt"])] = True
         else:
-            return render_template(r"profile2.html", tp_schein_check = "Invalid")
+            return render_template(r"booking.html", tp_schein_check = "Invalid")
 
     if user_inputs["tabs-two"] != "1" and "check" not in user_inputs:
-        return render_template(r"profile2.html", rechnung_check = "Invalid", tab_two = "checked")
+        return render_template(r"booking.html", rechnung_check = "Invalid", tab_two = "checked")
 
 
     con.fahrtenbuchung(
@@ -220,7 +217,7 @@ def my_prof():
                             postal_code = postal_code, city = city, region = region,  = "Invalid")
         if con.login(current_profile, user_inputs["old_pw"]):
             con.change_pw(email=current_profile, pw=user_inputs["new_pw"])
-            return redirect("/main")
+            return redirect("/myprof")
         else:
             return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region, matching = "Invalid")
