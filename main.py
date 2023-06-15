@@ -27,7 +27,6 @@ def login():
    
     if matching:
         current_profile = e_mail
-        print(current_profile)
         return redirect("/main")
     else:
         return render_template(r"login.html", matching = "Invalid", e_mail = e_mail)
@@ -86,8 +85,6 @@ def booking():
 @run.route("/book", methods=["GET", "POST"])
 def book():
     user_inputs = request.form.to_dict()
-    print(user_inputs)
-
     mapping = {"abschnitt_eins_a":[False, False, False, False], 
             "abschnitt_eins_b":[False, False, False, False], 
             "abschnitt_drei_a":[False, False, False, False, False], 
@@ -164,15 +161,11 @@ def main():
         time = row[1].strftime("%H:%M")
         column_dic = {'id': row[0],'date': full_date, 'time': time, 'behandlungsstaette': row[2]}
         bookings_list.append(column_dic)
-
-    print(bookings_list)
     user_inputs = request.form.to_dict()
 
     if "cancel" in user_inputs:
         id = user_inputs["cancel"]
-        print(id)
         con.delete_booking(id)
-        
         return redirect("/main")
     return render_template(r"mainpage.html", bookings_list=bookings_list)
 
