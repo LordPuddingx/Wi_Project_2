@@ -54,7 +54,6 @@ def registration():
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                                postal_code = postal_code, city = city, region = region)
 
-    
     if pw != pw_w:
         return render_template(r"registration.html", pw_matching = "Invalid", 
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
