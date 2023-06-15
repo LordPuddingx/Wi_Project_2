@@ -116,6 +116,11 @@
                             <td>
                                 <input type="password" placeholder="Neues Passwort" name="new_pw" id="new_pw">
                             </td>
+                            {% if pw_neu_check %}
+                            <br>
+                            <h4 style="color: red;">Das Passwort muss mindestens 5 Zeichen lang sein, mindestens einen
+                                Groß- und Kleinbuchstaben sowie eine Zahl entahlten</h4>
+                            {% endif %}
                         </tr>
                         <tr>
                             <td></td>
