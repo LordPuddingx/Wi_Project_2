@@ -102,26 +102,33 @@
                             </td>
                             <td>
                                 <input type="password" placeholder="Altes Passwort" name="old_pw" id="old_pw">
-                                {% if matching %}
-                                <br>
-                                <label style="color: red;">Das angegebenen Passwort ist leider nicht korrekt!</label>
-
-                                {% endif %}
                             </td>
                         </tr>
+                        {% if matching %}
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label style="color: red;">Das angegebene Passwort ist leider nicht korrekt!</label>
+                            </td>
+                        </tr>
+                        {% endif %}
                         <tr>
                             <td>
                                 <label>Neues Passwort</label>
                             </td>
                             <td>
                                 <input type="password" placeholder="Neues Passwort" name="new_pw" id="new_pw">
-                                {% if pw_neu_check %}
-                                <br>
-                                <h4 style="color: red;">Das Passwort muss mindestens 5 Zeichen lang sein, mindestens einen
-                                    Groß- und Kleinbuchstaben sowie eine Zahl entahlten</h4>
-                                {% endif %}
                             </td>
                         </tr>
+                        {% if pw_neu_check %}
+                        <tr>
+                            <td></td>
+                            <td>
+                                <label style="color: red;">Das Passwort muss mindestens 5 Zeichen lang sein, <br>mindestens einen
+                                    Groß- und Kleinbuchstaben sowie eine Zahl enthalten</label>
+                            </td>
+                        </tr>
+                        {% endif %}
                         <tr>
                             <td></td>
                             <td>
