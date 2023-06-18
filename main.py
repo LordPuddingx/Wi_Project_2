@@ -93,7 +93,7 @@ def book():
     # Checken ob ein Datum eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
     if user_inputs["zeitpunkt"] == "":
         return render_template(r"booking.html", datum_check = "Invalid")
-    elif user_inputs["zeitpunkt"] < str(datetime.now() + timedelta(days=1)):
+    elif user_inputs["zeitpunkt"] < str(datetime.now() + timedelta(days=7)):
         return render_template(r"booking.html", datum_check_2 = "Invalid")
 
     else:
