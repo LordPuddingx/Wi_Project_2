@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, Response
-from datetime import datetime
+from datetime import datetime, timedelta
 import re
 
 import connection, mail
@@ -93,7 +93,7 @@ def book():
     # Checken ob ein Datum eingegeben wurde, ansonsten Seite neuladen mit Fehlermeldung
     if user_inputs["zeitpunkt"] == "":
         return render_template(r"booking.html", datum_check = "Invalid")
-    elif user_inputs["zeitpunkt"] < str(datetime.now()):
+    elif user_inputs["zeitpunkt"] < str(datetime.now() + timedelta(days=1)):
         return render_template(r"booking.html", datum_check_2 = "Invalid")
 
     else:
