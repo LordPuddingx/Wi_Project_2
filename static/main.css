@@ -34,9 +34,6 @@ h1 {
     color: rgb(0, 0, 0);
 }
 
-/* Button Group
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
 button.buchen:hover {
     background-color: #5454b96e;
 }
@@ -76,8 +73,6 @@ button.buchen:hover {
     box-sizing: border-box;
 }
 
-/* Tables
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 th,
 td {
     padding: 12px 15px;

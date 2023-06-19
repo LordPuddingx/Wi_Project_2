@@ -1,11 +1,14 @@
+# Importe
 from flask import Flask, render_template, request, redirect, Response
 from datetime import datetime, timedelta
 import re
 
 import connection, mail
 
+# Flask-Instanz
 run = Flask(__name__)
 
+# globale Variable: speichert das Profil, welches sich gerade angemeldet hat
 global current_profile
 
 # Startseite - Login
@@ -30,7 +33,8 @@ def login():
         return redirect("/main")
     else:
         return render_template(r"login.html", matching = "Invalid", e_mail = e_mail)
-    
+
+# Registrierungsseite-aufruf  
 @run.route("/reg")
 def reg():
     return render_template(r"registration.html")
@@ -79,6 +83,7 @@ def registration():
                             e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region)
 
+# Login-Seite aufruf nach Registrierung
 @run.route("/reg_log")
 def reg_log():
     return render_template(r"login.html")
@@ -111,7 +116,7 @@ def book():
     if user_inputs["ort"] == "":
         return render_template(r"booking.html", ort_check = "Invalid")
 
-
+    # Mapping der markierten Inputfelder in die mapping-matrix
     if user_inputs["tabs-two"] == "1":
         if "genehmingungsfrei" in user_inputs and "genehmingungspflicht" in user_inputs and "art" in user_inputs and "ausstatt":
             mapping["abschnitt_eins_a"][int(user_inputs["genehmingungsfrei"])] = True

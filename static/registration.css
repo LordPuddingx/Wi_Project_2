@@ -27,22 +27,6 @@ form {
     padding: 50px 35px;
 }
 
-/* form-registration {
-    height: 820px;
-    width: 620px;
-    background-color: rgba(200, 195, 221, 0.13);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 35%;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(200, 195, 221, 0.13);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
-    padding: 50px 35px;
-    background-image: url('/static/images/LOGO_R2S.png');
-} */
-
 form * {
     font-family: sans-serif;
     color: #000000;
@@ -80,21 +64,6 @@ input {
     font-weight: 300;
 }
 
-/* form {
-    height: 880px;
-    width: 960px;
-    background-color: rgba(200, 195, 221, 0.13);
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(200, 195, 221, 0.13);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
-    padding: 50px 35px;
-} */
-
 
 br {
     display: block;
@@ -120,15 +89,6 @@ button {
 button:hover {
     background-color: #5454b96e;
 }
-
-/* .vertical-center {
-    top: 90%;
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-} */
 
 .navigation {
     list-style-type: none;

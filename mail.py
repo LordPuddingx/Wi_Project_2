@@ -1,14 +1,18 @@
+# Imports
 from email.message import EmailMessage
 import ssl
 import smtplib
 
 import re
 
+# Regex für E-Mail validierung
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
 
+# Paramter für E-Mail festlegen
 sender = "TransportunternehmenX@gmail.com"
 pw = "kcbdxkgklbholunt"
 
+# E-Mail Inhalt
 subject = "Sie haben sich erfolgreich bei Transportunternehmen X registriert!"
 text = """
 Liebe*r Kund*in,
@@ -23,6 +27,7 @@ Ihr Transportunternehmen X
 
 """
 
+# E-Mail zusammensetzen und senden
 def write_mail(receiver):
     mail = EmailMessage()
     mail["From"] = sender
@@ -37,6 +42,7 @@ def write_mail(receiver):
         smtp.sendmail(sender, receiver, mail.as_string())
 
 
+# E-Mail Validierung
 def check_mail(mail):
     if(re.fullmatch(regex, mail)):
         return True
