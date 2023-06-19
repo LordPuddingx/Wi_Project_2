@@ -21,10 +21,11 @@ form {
     top: 50%;
     left: 50%;
     border-radius: 20px;
+    padding: 50px 35px;
     backdrop-filter: blur(10px);
     border: 2px solid rgba(200, 195, 221, 0.13);
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.75);
-    padding: 50px 35px;
+
 }
 
 form * {

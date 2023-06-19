@@ -7,6 +7,7 @@ import hashlib
 
 # Klasse die ein Verbindung zur Datenbank herstellt. Über diese werden die Inputdaten abgeglichen, 
 # in die DB geladen und Outputdaten aus der Datenbank geladen.
+
 class Connection():
     # Parameter zu einer lokalen Microsoft SQL Server-Datenbank. Die Datenbank muss über die "Windows Authentication"
     # und den localhost erreichbar sein. Der MS SQL Server muss den ODBC Driver 17 unterstützen.
