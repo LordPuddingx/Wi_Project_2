@@ -7,14 +7,14 @@ import connection, mail
 run = Flask(__name__)
 
 global current_profile
-# Nicht vergessen zu löschen!
-# current_profile = 'DomGOD@hotmail.com'
 
+# Startseite - Login
 @run.route("/")
 def load():
     current_profile = ""
     return render_template("login.html")
 
+# Überprüfung Login-Daten
 @run.route("/login", methods=["GET", "POST"])
 def login():
     global current_profile
@@ -35,6 +35,7 @@ def login():
 def reg():
     return render_template(r"registration.html")
 
+# Registrierungsseite
 @run.route("/registration", methods=["GET", "POST"])
 def registration():
     user_inputs = request.form.to_dict()
@@ -48,23 +49,27 @@ def registration():
     city = user_inputs["city"]
     region = user_inputs["region"]
 
+    # Fehlermeldung: Alle Felder müssen ausgefüllt sein
     if e_mail == "" or last_name == "" or first_name == "" or street == "" or postal_code == "" or city == "" or region == "":
         return render_template(r"registration.html", vollstaendig = "Invalid", vollstaendig_2 = "Invalid", 
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                                postal_code = postal_code, city = city, region = region)
 
+    # Fehlermeldung: Passwörter stimmen nicht überein
     if pw != pw_w:
         return render_template(r"registration.html", pw_matching = "Invalid", 
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                                postal_code = postal_code, city = city, region = region)
+    # Fehlermeldung: Passwortanfoderungen wurden nicht erfüllt
     elif len(pw) < 5 or re.search(r"[A-Z]", pw) is None or re.search(r"[a-z]", pw) is None or re.search(r"\d", pw) is None:
         return render_template(r"registration.html", pw_length = "Invalid", 
                                e_mail = e_mail, last_name = last_name, first_name = first_name, street = street, 
                                postal_code = postal_code, city = city, region = region)
 
+    # Überprüfung, ob angegebene E-Mail bereits existiert. Falls true, dann entsprechende Fehlermeldung
     e_mail_not_exists = con.existing_email(e_mail) and mail.check_mail(e_mail)
 
-
+    # Neues Profil wird angelegt
     if e_mail_not_exists:
         con.new_profil(e_mail, pw, last_name, first_name, street, postal_code, city, region)
         mail.write_mail(e_mail)
@@ -78,10 +83,12 @@ def registration():
 def reg_log():
     return render_template(r"login.html")
 
+# Fahrtbuchungsseite
 @run.route("/booking", methods=["GET", "POST"])
 def booking():
     return render_template(r"booking.html")
 
+# Fahrt buchen
 @run.route("/book", methods=["GET", "POST"])
 def book():
     user_inputs = request.form.to_dict()
@@ -117,7 +124,7 @@ def book():
     if user_inputs["tabs-two"] != "1" and "check" not in user_inputs:
         return render_template(r"booking.html", rechnung_check = "Invalid", tab_two = "checked")
 
-
+    # Fahrt in der Datenbank anlegen
     con.fahrtenbuchung(
         email=current_profile, 
         datum = datum[0]+"-"+datum[2]+"-"+datum[1]+" "+uhrzeit[1],
@@ -151,9 +158,10 @@ def book():
     
     return redirect(r"/main")
 
-
+# Hauptseite - Uebersicht Fahrtbuchungen
 @run.route("/main", methods=["GET", "POST"])
 def main():
+    # Auflistung der Fahrtbuchungen
     bookings_data = con.my_bookings(current_profile)
     bookings_list = []
     for row in bookings_data:
@@ -163,12 +171,14 @@ def main():
         bookings_list.append(column_dic)
     user_inputs = request.form.to_dict()
 
+    # Stornierfunktion
     if "cancel" in user_inputs:
         id = user_inputs["cancel"]
         con.delete_booking(id)
         return redirect("/main")
     return render_template(r"mainpage.html", bookings_list=bookings_list)
 
+# Mein Profil
 @run.route("/my_profile", methods=["GET", "POST"])
 def my_profile():
     profile_data = con.my_profile(current_profile)
@@ -182,6 +192,7 @@ def my_profile():
     return render_template(r"my_profile.html", last_name = last_name, first_name = first_name, street = street, 
                             postal_code = postal_code, city = city, region = region)
 
+# Profilseite nach Änderung der Profildaten
 @run.route("/myprof", methods=["GET", "POST"])
 def my_prof():
     profile_data = con.my_profile(current_profile)
@@ -192,6 +203,7 @@ def my_prof():
     city = profile_data[0][4]
     region = profile_data[0][5]
 
+    # Profildaten speichern
     user_inputs = request.form.to_dict()
 
     if "speichern" in user_inputs:
@@ -204,6 +216,8 @@ def my_prof():
             stadt = user_inputs["city"], 
             bundesland = user_inputs["region"])
         return redirect("/myprof")
+    
+    # Passwort ändern
     elif "old_pw" in user_inputs:
         if con.login(current_profile, user_inputs["old_pw"]):
             if len(user_inputs["new_pw"]) < 5 or re.search(r"[A-Z]", user_inputs["new_pw"]) is None or re.search(r"[a-z]", user_inputs["new_pw"]) is None or re.search(r"\d", user_inputs["new_pw"]) is None:
